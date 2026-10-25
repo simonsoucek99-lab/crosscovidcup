@@ -3,48 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Můj Web</title>
+    <title>Cross Covid Cup | Seriál trailových běhů</title>
+    <meta name="description" content="Neformální seriál trailových běhů v přírodě. Bez čísel, bez zázemí, bez značení. Vychází z nultého ročníku 2020.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-theme="dark">
+    <!-- Navigace -->
     <header class="navbar">
-        <div class="logo">🚀 MůjWeb</div>
-        <nav>
-            <a href="#home">Domů</a>
-            <a href="#features">Funkce</a>
-            <a href="#contact">Kontakt</a>
-        </nav>
-        <button id="themeToggle" class="btn-secondary">🌙 Změnit režim</button>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-badge">CCC</span>
+                <span class="logo-text">Cross Covid Cup</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#about">O seriálu</a>
+                <a href="#history">Historie</a>
+                <a href="#principles">Principy</a>
+                <a href="#rules">Pravidla</a>
+                <a href="#scoring">Bodování</a>
+            </nav>
+            <div class="nav-actions">
+                <button id="themeToggle" class="btn-icon" aria-label="Přepnout motiv">☀️</button>
+                <a href="#scoring" class="btn-cta">Kalkulačka bodů</a>
+            </div>
+        </div>
     </header>
 
     <main>
-        <section id="home" class="hero">
-            <h1>Jednoduchý a moderní web</h1>
-            <p>Tento web byl automaticky vygenerován agentem. Všechny soubory máte přímo na disku.</p>
-            <div class="hero-actions">
-                <button id="actionBtn" class="btn-primary">Klikni na mě</button>
-                <span id="clickCount" class="counter-text">Kliknuto: 0×</span>
+        <!-- Hero sekce -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-tag">🌲 Neformální běžecká komunita</div>
+                <h1>Bez čísel. Bez zázemí. Bez značení.</h1>
+                <p class="hero-subtitle">
+                    Seriál víkendových běhů v přírodních terénech na hranici vlastních možností. 
+                    Nezáleží na oficialitách – podstatný je pohyb, výzva a parta lidí na stejné vlně.
+                </p>
+                <div class="hero-badges">
+                    <div class="badge-item">
+                        <span class="badge-num">10 km</span>
+                        <span class="badge-label">Maximální délka trasy</span>
+                    </div>
+                    <div class="badge-divider"></div>
+                    <div class="badge-item">
+                        <span class="badge-num">1 + N</span>
+                        <span class="badge-label">Unikátní bodovací systém</span>
+                    </div>
+                    <div class="badge-divider"></div>
+                    <div class="badge-item">
+                        <span class="badge-num">STRAVA</span>
+                        <span class="badge-label">Měření & virtuální starty</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#rules" class="btn-primary">Pravidla seriálu</a>
+                    <a href="#history" class="btn-secondary">Příběh vzniku</a>
+                </div>
             </div>
         </section>
 
-        <section id="features" class="cards">
-            <div class="card">
-                <h3>⚡ Rychlý start</h3>
-                <p>Kód je čistý, bez zbytečných knihoven – čisté HTML, CSS a JavaScript.</p>
+        <!-- O seriálu & Úvod -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="subheading">O projektu</span>
+                    <h2>Ryzí běh v terénu pro každého</h2>
+                    <p class="section-desc">
+                        Cross Covid Cup vznikl jako svobodná alternativa k velkým masovým závodům. 
+                        Běháme v malých skupinách v členitém terénu mimo frekventovaná místa. 
+                        Trasy stavíme na jednoduchých okruzích, kde si každý může otestovat své aktuální tempo na úrovni ANP i vytrvalost.
+                    </p>
+                </div>
+
+                <div class="grid-3">
+                    <div class="feature-card">
+                        <div class="card-icon">🗺️</div>
+                        <h3>Každý může být tvůrcem</h3>
+                        <p>Trasu může navrhnout kterýkoliv účastník. Ukážete ostatním své oblíbené tréninkové revíry a dáte svému běhu originální název.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon">⚡</div>
+                        <h3>Intenzivní tréninkový formát</h3>
+                        <p>Trasy do 10 km na okruzích jsou ideální pro víkendové prověření formy i jako součást systematického tréninkového plánu.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon">📱</div>
+                        <h3>Společně i virtuálně</h3>
+                        <p>Nestíháte společný víkendový start? Závod můžete absolvovat individuálně a svůj čas nahrát přes STRAVA segment.</p>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <h3>🎨 Moderní design</h3>
-                <p>Plně responzivní vzhled pro mobily i počítače s podporou tmavého režimu.</p>
+        </section>
+
+        <!-- Historie / Z čeho vycházíme -->
+        <section id="history" class="section section-alt">
+            <div class="container">
+                <div class="history-box">
+                    <div class="history-content">
+                        <span class="subheading">Historie & kořeny</span>
+                        <h2>Zrod z virového vakua roku 2020</h2>
+                        <div class="history-text">
+                            <p>
+                                Píše se podzim 2020. Vládní opatření a pandemická situace ochromily organizovaný společenský 
+                                život i veškeré sportovní akce. Běžci přišli o závody, motivaci i setkávání.
+                            </p>
+                            <p>
+                                Právě toto <strong>„virové vakuum“</strong> se však stalo impulsem pro vznik něčeho nového. 
+                                Vznikl <strong>nultý ročník Cross Covid Cup 2020</strong> – spontánní seriál běhů v přírodních lokalitách 
+                                městské části Praha 5.
+                            </p>
+                            <p>
+                                Místo byrokracie a startovních čísel jsme vsadili na ryzí kamarádskou rivalitu, 
+                                starty ve vlnách a chytrý bodovací systém, který motivuje jak rychlíky v čele, 
+                                tak každého bojovníka na trati. Tento duch svobody si seriál drží dodnes.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="history-quote">
+                        <blockquote>
+                            „Bez čísel, bez zázemí, bez značení – v malých skupinách se scházíme, abychom se proběhli na hranici svých možností.“
+                        </blockquote>
+                        <cite>— Z propozic nultého ročníku 2020</cite>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <h3>🤖 Připraveno pro agenta</h3>
-                <p>Napište mi prompt a já kód okamžitě upravím podle vašich představ.</p>
+        </section>
+
+        <!-- Pravidla seriálu -->
+        <section id="rules" class="section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="subheading">Kodex závodníka</span>
+                    <h2>Pravidla seriálu</h2>
+                    <p class="section-desc">Pravidla zůstávají přímočará, férová a jednoduchá. Žádné zbytečné papírování.</p>
+                </div>
+
+                <div class="rules-grid">
+                    <div class="rule-card">
+                        <span class="rule-num">01</span>
+                        <div class="rule-body">
+                            <h3>Společný víkendový start</h3>
+                            <p>Během každého víkendu proběhne společný výběh na nově vybrané trase. Při vyšším počtu běžců startujeme ve vlnách.</p>
+                        </div>
+                    </div>
+                    <div class="rule-card">
+                        <span class="rule-num">02</span>
+                        <div class="rule-body">
+                            <h3>Vlastní měření času</h3>
+                            <p>Každý běžec si čas stopuje sám. Oficiální čas je vykazován na základě vytvořeného <strong>STRAVA segmentu</strong> dané trasy.</p>
+                        </div>
+                    </div>
+                    <div class="rule-card">
+                        <span class="rule-num">03</span>
+                        <div class="rule-body">
+                            <h3>Zápis do výsledkové listiny</h3>
+                            <p>Každý, kdo trasu absolvuje v daném termínu (ať už při společném startu, nebo virtuálně), má právo zapsat svůj výsledek.</p>
+                        </div>
+                    </div>
+                    <div class="rule-card">
+                        <span class="rule-num">04</span>
+                        <div class="rule-body">
+                            <h3>Parametry trasy</h3>
+                            <p>Maximální délka je <strong>10 km</strong>, obvykle vedená na několika přehledných okruzích mimo frekventované cesty.</p>
+                        </div>
+                    </div>
+                    <div class="rule-card">
+                        <span class="rule-num">05</span>
+                        <div class="rule-body">
+                            <h3>Virtuální účast</h3>
+                            <p>Nestíháte víkend? Odběhněte si trasu samostatně v průběhu určeného okna a splňte svůj tréninkový plán (ANP / SS).</p>
+                        </div>
+                    </div>
+                    <div class="rule-card">
+                        <span class="rule-num">06</span>
+                        <div class="rule-body">
+                            <h3>Hmotné odměny</h3>
+                            <p>Vyhodnocují se jednotlivé závody i celkové pořadí seriálu. Na nejlepší čekají po skončení seriálu věcné ceny.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bodovací systém & Interaktivní kalkulačka -->
+        <section id="scoring" class="section section-alt">
+            <div class="container">
+                <div class="scoring-wrapper">
+                    <div class="scoring-info">
+                        <span class="subheading">Férový metr</span>
+                        <h2>Jak funguje bodování seriálu?</h2>
+                        <p class="lead">
+                            Náš systém oceňuje účast i bojovnost. Čím větší konkurence se na startu sejde, tím více bodů je ve hře.
+                        </p>
+                        <div class="formula-box">
+                            <div class="formula-title">Vzorec pro výpočet bodů za závod:</div>
+                            <div class="formula-math">Body = 1 + počet předběhnutých závodníků</div>
+                        </div>
+                        <ul class="scoring-highlights">
+                            <li><strong>1 bod za účast:</strong> Každý, kdo dokončí, získá automaticky základní bod.</li>
+                            <li><strong>+1 bod za každého:</strong> Koho na trati necháte za sebou, za toho inkasujete bod navíc.</li>
+                            <li><strong>Příklad:</strong> Pokud na závodě běží 15 lidí a doběhnete na 3. místě, předběhli jste 12 soupeřů. Váš zisk je <strong>1 + 12 = 13 bodů</strong>.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Interaktivní widget -->
+                    <div class="calculator-card">
+                        <h3>🧮 Vyzkoušejte kalkulačku bodů</h3>
+                        <p class="calc-desc">Zadejte parametry závodu a zjistěte okamžitý bodový zisk:</p>
+                        
+                        <div class="input-group">
+                            <label for="totalRunners">Celkový počet běžců v závodě:</label>
+                            <input type="number" id="totalRunners" min="1" value="16" placeholder="např. 16">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="finishPosition">Vaše cílové umístění (pořadí):</label>
+                            <input type="number" id="finishPosition" min="1" value="3" placeholder="např. 3">
+                        </div>
+
+                        <div class="calc-result">
+                            <span class="result-label">Váš zisk z tohoto závodu:</span>
+                            <div class="result-number"><span id="pointsDisplay">14</span> <small>bodů</small></div>
+                            <p id="resultBreakdown" class="result-detail">1 bod za účast + 13 poražených soupeřů</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA sekce -->
+        <section class="section cta-section">
+            <div class="container text-center">
+                <h2>Máš chuť se přidat nebo navrhnout trasu?</h2>
+                <p>Cross Covid Cup je otevřená běžecká iniciativa. Připoj se k nám na příštím startu.</p>
+                <div class="cta-actions">
+                    <button id="alertNoticeBtn" class="btn-primary">Informace o příštím kole</button>
+                    <a href="https://github.com/simonsoucek99-lab/crosscovidcup" target="_blank" class="btn-secondary">GitHub Repozitář</a>
+                </div>
             </div>
         </section>
     </main>
 
+    <!-- Zápatí -->
     <footer>
-        <p>&copy; 2026 Můj Web. Vytvořeno pomocí AI agenta.</p>
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="logo-text">Cross Covid Cup</span>
+                <p>Nezávislý trailový seriál. Od roku 2020.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#about">O seriálu</a>
+                <a href="#history">Historie</a>
+                <a href="#rules">Pravidla</a>
+                <a href="#scoring">Bodování</a>
+            </div>
+            <div class="footer-copy">
+                &copy; 2020–2026 Cross Covid Cup. Všechna práva vyhrazena.
+            </div>
+        </div>
     </footer>
 
     <script src="script.js"></script>
