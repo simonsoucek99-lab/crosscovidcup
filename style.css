@@ -1,405 +1,577 @@
-/* CROSS COVID CUP - Archaický / klubový / neformální styl */
+/* ============================================================
+   CROSS COVID CUP — NEO-BRUTALISM (MODERN RETRO)
+   ============================================================ */
 
 :root {
-    --black: #111111;
-    --red: #d32020;
-    --yellow: #f5a623;
-    --yellow-light: #fff8e7;
-    --paper: #f5f4ef;
-    --paper-card: #ffffff;
-    --border: #111111;
-    --gray-text: #333333;
-    --muted: #666666;
+    --bg-black: #0c0c0c;
+    --card-white: #ffffff;
+    --border-black: #000000;
+    --accent-red: #d32020;
+    --accent-orange: #ff5722;
+    --accent-yellow: #ffc700;
+    --text-main: #111111;
+    --text-muted: #555555;
+    --font-heading: 'Bebas Neue', 'Oswald', Impact, sans-serif;
+    --font-mono: 'Space Mono', 'Courier New', monospace;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --neo-shadow: 6px 6px 0px #000000;
+    --neo-shadow-sm: 4px 4px 0px #000000;
+    --neo-shadow-lg: 8px 8px 0px #000000;
 }
 
-* {
+/* Úplné vynulování zaoblení - Neo-brutalism ostré rohy */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    border-radius: 0 !important;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-black);
 }
 
 body {
-    background-color: #2b2b2b;
-    background-image: repeating-linear-gradient(0deg, #262626, #262626 1px, transparent 1px, transparent 4px);
-    color: var(--black);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.5;
-    padding: 20px 10px;
+    background-color: var(--bg-black);
+    /* Retro mřížková textura */
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    padding: 24px 16px;
+    min-height: 100vh;
 }
 
-/* Hlavní kontejner stránky */
-.page-frame {
-    max-width: 860px;
+/* ============================================================
+   HLAVNÍ DVOU-SLOUPOVÝ LAYOUT SE SIDEBAREM
+   ============================================================ */
+.layout-container {
+    max-width: 1240px;
     margin: 0 auto;
-    background-color: var(--paper);
-    border: 3px solid var(--border);
-    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.7);
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
 }
 
-/* Hlavička */
-.cup-header {
-    border-bottom: 3px solid var(--border);
-    background-color: #ffffff;
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.neo-sidebar {
+    width: 330px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 24px;
+    background: var(--card-white);
+    border: 3.5px solid var(--border-black);
+    box-shadow: var(--neo-shadow);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-.header-top {
+.sidebar-meta {
     display: flex;
     justify-content: space-between;
-    padding: 6px 14px;
-    background-color: var(--black);
-    color: var(--yellow);
-    font-family: "Courier New", Courier, monospace;
-    font-size: 0.8rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.logo-row {
-    display: flex;
     align-items: center;
-    gap: 24px;
-    padding: 24px 20px 20px;
-    background: #ffffff;
-}
-
-.logo-box {
-    flex-shrink: 0;
-}
-
-.cup-logo {
-    max-width: 210px;
-    height: auto;
-    display: block;
-    border: 2px solid var(--border);
-    background: #fff;
-    padding: 4px;
-}
-
-.title-box {
-    flex-grow: 1;
-}
-
-.main-title {
-    font-family: Impact, "Arial Black", sans-serif;
-    font-size: 2.8rem;
-    line-height: 1;
-    letter-spacing: 1.5px;
-    color: var(--black);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-}
-
-.subtitle-text {
-    font-family: "Courier New", Courier, monospace;
-    font-size: 0.95rem;
-    font-weight: bold;
-    color: var(--red);
-    margin-bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-bottom: 2px solid var(--border-black);
+    padding-bottom: 10px;
     letter-spacing: 0.5px;
 }
 
-.manifest-banner {
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-red);
+}
+
+.live-indicator .dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-red);
     display: inline-block;
-    background-color: var(--yellow);
-    border: 2px solid var(--border);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+.sidebar-brand {
+    text-align: center;
+}
+
+.logo-wrapper {
+    background: #ffffff;
+    border: 3px solid var(--border-black);
+    box-shadow: var(--neo-shadow-sm);
+    padding: 10px;
+    margin-bottom: 14px;
+    display: inline-block;
+}
+
+.brand-logo {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.brand-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    line-height: 0.95;
+    letter-spacing: 1.5px;
+    color: var(--border-black);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.brand-sub {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent-red);
+    letter-spacing: 0.5px;
+}
+
+.manifest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+}
+
+.tag-pill {
+    background: var(--accent-yellow);
+    border: 2px solid var(--border-black);
+    box-shadow: 2px 2px 0px #000;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    color: #000;
+    letter-spacing: 0.5px;
+}
+
+/* Navigace v sidebaru */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 3px solid var(--border-black);
+    border-bottom: 3px solid var(--border-black);
+    padding: 14px 0;
+}
+
+.nav-item {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-main);
+    background: #f4f4f4;
+    border: 2.5px solid var(--border-black);
+    padding: 9px 12px;
+    box-shadow: var(--neo-shadow-sm);
+    transition: all 0.15s ease;
+    display: block;
+}
+
+.nav-item:hover {
+    background: var(--accent-orange);
+    color: #ffffff;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000;
+}
+
+.nav-item:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+.sidebar-footer {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    background: #f7f7f7;
+    border: 2px solid var(--border-black);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar-footer .meta-row strong {
+    color: var(--accent-red);
+}
+
+/* ============================================================
+   HLAVNÍ OBSAHOVÁ OBLAST
+   ============================================================ */
+.main-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+/* Neo-brutalism Oznámení */
+.neo-notice {
+    background: var(--accent-yellow);
+    border: 3.5px solid var(--border-black);
+    box-shadow: var(--neo-shadow);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.notice-tag {
+    background: var(--border-black);
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.8rem;
     padding: 4px 10px;
-    font-weight: 800;
-    font-size: 0.85rem;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+}
+
+.notice-text {
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--border-black);
+}
+
+/* ============================================================
+   KARTY / BLOKY
+   ============================================================ */
+.neo-card {
+    background: var(--card-white);
+    border: 3.5px solid var(--border-black);
+    box-shadow: var(--neo-shadow);
+}
+
+.card-header {
+    background: #ffffff;
+    border-bottom: 3.5px solid var(--border-black);
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.section-tag {
+    background: var(--accent-red);
+    color: #ffffff;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border: 2px solid var(--border-black);
+    box-shadow: 2px 2px 0px #000;
     letter-spacing: 1px;
 }
 
-.manifest-banner span {
-    color: var(--black);
+.card-header h2 {
+    font-family: var(--font-heading);
+    font-size: 2.1rem;
+    line-height: 1;
+    letter-spacing: 1.5px;
+    color: var(--border-black);
+    text-transform: uppercase;
 }
 
-/* Navigační lišta */
-.cup-nav {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: var(--black);
-    border-top: 2px solid var(--border);
-    padding: 8px 12px;
-    gap: 8px;
+.card-body {
+    padding: 24px;
 }
 
-.cup-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 0.88rem;
-    font-weight: bold;
-    padding: 4px 8px;
-    transition: background 0.1s;
-}
-
-.cup-nav a:hover {
-    background-color: var(--red);
-    color: #ffffff;
-}
-
-/* Informační lišta */
-.notice-bar {
-    background-color: var(--yellow-light);
-    border-bottom: 2px dashed var(--border);
-    padding: 10px 18px;
-    font-size: 0.9rem;
+.body-lead {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 16px;
     color: #222;
 }
 
-.notice-bar strong {
-    color: var(--red);
+/* Východiska stripe */
+.quote-stripe {
+    background: #fafafa;
+    border-left: 8px solid var(--accent-orange);
+    border-top: 2px solid var(--border-black);
+    border-right: 2px solid var(--border-black);
+    border-bottom: 2px solid var(--border-black);
+    padding: 18px 20px;
 }
 
-/* Tělo obsahu */
-.content-body {
-    padding: 24px 20px;
-}
-
-.doc-section {
-    margin-bottom: 34px;
-    position: relative;
-    background: #ffffff;
-    border: 2px solid var(--border);
-    padding: 20px 22px;
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
-}
-
-.section-badge {
-    display: inline-block;
-    background-color: var(--red);
-    color: #ffffff;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 0.75rem;
-    font-weight: bold;
-    padding: 2px 7px;
-    margin-bottom: 8px;
-    border: 1px solid var(--border);
-}
-
-.doc-section h2 {
-    font-family: Impact, "Arial Black", sans-serif;
-    font-size: 1.55rem;
-    color: var(--black);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    border-bottom: 2px solid var(--black);
-    padding-bottom: 6px;
-    margin-bottom: 14px;
-}
-
-.doc-section p {
-    color: var(--gray-text);
+.quote-stripe p {
+    font-size: 1.02rem;
+    line-height: 1.65;
     margin-bottom: 12px;
-    font-size: 1rem;
-    line-height: 1.6;
+    color: #222;
 }
 
-/* Východiska text */
-.proclamation-box {
-    background: var(--paper);
-    border-left: 5px solid var(--yellow);
-    padding: 14px 16px;
-}
-
-.proclamation-box p:last-child {
+.quote-stripe p:last-child {
     margin-bottom: 0;
 }
 
-/* Pravidla seznam */
-.rules-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+/* ============================================================
+   ODDÍL 2.0: PRAVIDLA (NOVÉ BODY)
+   ============================================================ */
+.rules-neo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
 }
 
-.rule-row {
+.rule-box {
+    background: #ffffff;
+    border: 3px solid var(--border-black);
+    box-shadow: var(--neo-shadow-sm);
+    padding: 18px;
     display: flex;
+    gap: 16px;
     align-items: flex-start;
-    gap: 12px;
-    background: var(--paper);
-    border: 1px solid #ccc;
-    padding: 10px 14px;
+    transition: all 0.15s ease;
 }
 
-.r-num {
-    font-family: "Courier New", Courier, monospace;
-    font-weight: bold;
-    font-size: 1.1rem;
-    color: var(--red);
+.rule-box:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000;
+}
+
+.rule-index {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    line-height: 1;
+    background: var(--accent-yellow);
+    color: var(--border-black);
+    border: 2px solid var(--border-black);
+    padding: 4px 10px;
+    box-shadow: 2px 2px 0px #000;
     flex-shrink: 0;
 }
 
-.r-text {
-    font-size: 0.95rem;
-    color: var(--gray-text);
-}
-
-/* Bodování */
-.formula-card {
-    background-color: var(--yellow-light);
-    border: 2px solid var(--black);
-    padding: 16px;
-    margin-top: 14px;
-}
-
-.formula-header {
-    font-family: "Courier New", Courier, monospace;
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: var(--red);
+.rule-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    letter-spacing: 1px;
     margin-bottom: 4px;
+    color: var(--border-black);
+    line-height: 1.1;
 }
 
-.formula-line {
-    font-family: Impact, "Arial Black", sans-serif;
-    font-size: 1.25rem;
-    color: var(--black);
-    letter-spacing: 0.5px;
-    margin-bottom: 8px;
+.rule-content p {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333333;
+    line-height: 1.45;
 }
 
-.formula-example {
-    font-size: 0.92rem;
-    color: #444;
+/* ============================================================
+   ODDÍL 3.0: BODOVÁNÍ
+   ============================================================ */
+.formula-neo-box {
+    background: var(--accent-yellow);
+    border: 3.5px solid var(--border-black);
+    box-shadow: var(--neo-shadow-sm);
+    padding: 22px;
 }
 
-/* Kalkulačka */
-.calc-box {
-    background-color: var(--paper);
-    border: 2px solid var(--black);
-    padding: 18px;
+.formula-label {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent-red);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.formula-expression {
+    font-family: var(--font-heading);
+    font-size: 1.85rem;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    color: var(--border-black);
+    margin-bottom: 12px;
+}
+
+.formula-demo {
+    background: #ffffff;
+    border: 2px solid var(--border-black);
+    padding: 10px 14px;
+    font-size: 0.95rem;
+}
+
+.formula-demo code {
+    font-family: var(--font-mono);
+    background: #efefef;
+    border: 1px solid #000;
+    padding: 2px 6px;
+    font-weight: 700;
+}
+
+/* ============================================================
+   ODDÍL 4.0: KALKULAČKA BODŮ
+   ============================================================ */
+.calc-neo-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.calc-inputs-col {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
-.calc-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-}
-
-.calc-row label {
-    font-weight: bold;
-    font-size: 0.95rem;
-}
-
-.calc-row input {
-    width: 90px;
-    padding: 6px 10px;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border: 2px solid var(--black);
-    background: #ffffff;
-    text-align: center;
-}
-
-.calc-output {
-    margin-top: 10px;
-    background: var(--black);
-    color: #ffffff;
+.neo-input-group {
+    background: #f7f7f7;
+    border: 3px solid var(--border-black);
+    box-shadow: var(--neo-shadow-sm);
     padding: 14px;
-    text-align: center;
-    border: 2px solid var(--red);
 }
 
-.out-label {
+.neo-input-group label {
     display: block;
-    font-family: "Courier New", Courier, monospace;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    color: var(--border-black);
+}
+
+.neo-input-group input {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    border: 2.5px solid var(--border-black);
+    background: #ffffff;
+    color: var(--border-black);
+    box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+.neo-input-group input:focus {
+    background: #fffde7;
+    border-color: var(--accent-orange);
+}
+
+.calc-screen-col {
+    background: var(--border-black);
+    border: 3.5px solid var(--border-black);
+    box-shadow: var(--neo-shadow-sm);
+    padding: 20px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.screen-title {
+    font-family: var(--font-mono);
     font-size: 0.8rem;
-    color: var(--yellow);
+    color: var(--accent-yellow);
     letter-spacing: 1px;
     margin-bottom: 4px;
 }
 
-.out-val {
-    display: block;
-    font-family: Impact, sans-serif;
-    font-size: 2.8rem;
-    color: var(--yellow);
-    line-height: 1;
+.screen-digits {
+    font-family: var(--font-heading);
+    font-size: 4.8rem;
+    line-height: 0.9;
+    color: var(--accent-yellow);
+    letter-spacing: 2px;
 }
 
-.out-sub {
-    display: block;
-    font-size: 0.85rem;
+.screen-legend {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
     color: #bbbbbb;
-    margin-top: 4px;
+    margin-top: 8px;
 }
 
-/* Strava sekce */
-.strava-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-top: 10px;
-    background: var(--paper);
-    border: 1px solid #ccc;
-    padding: 12px 14px;
-    font-size: 0.92rem;
-}
-
-/* Patička */
-.cup-footer {
-    border-top: 3px solid var(--border);
-    background-color: var(--black);
-    color: #ffffff;
+/* ============================================================
+   PATIČKA
+   ============================================================ */
+.neo-footer {
+    background: var(--card-white);
+    border: 3.5px solid var(--border-black);
+    box-shadow: var(--neo-shadow);
     padding: 16px 20px;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 0.8rem;
-}
-
-.footer-top {
-    font-weight: bold;
-    color: var(--yellow);
-    margin-bottom: 6px;
-    letter-spacing: 0.5px;
-}
-
-.footer-bottom {
     display: flex;
     justify-content: space-between;
-    color: #aaaaaa;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
 }
 
-/* Mobilní responzivita */
-@media (max-width: 680px) {
+.neo-footer strong {
+    color: var(--accent-red);
+}
+
+/* ============================================================
+   RESPONZIVITA
+   ============================================================ */
+@media (max-width: 960px) {
+    .layout-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .neo-sidebar {
+        width: 100%;
+        position: static;
+    }
+
+    .rules-neo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calc-neo-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
     body {
-        padding: 5px;
+        padding: 12px 8px;
     }
-    .logo-row {
-        flex-direction: column;
-        text-align: center;
-        gap: 14px;
-    }
-    .cup-logo {
-        max-width: 170px;
-        margin: 0 auto;
-    }
-    .main-title {
-        font-size: 2.1rem;
-    }
-    .header-top {
-        flex-direction: column;
-        gap: 4px;
-        text-align: center;
-    }
-    .cup-nav {
-        justify-content: center;
-    }
-    .calc-row {
+
+    .neo-notice {
         flex-direction: column;
         align-items: flex-start;
+        gap: 8px;
     }
-    .calc-row input {
-        width: 100%;
+
+    .card-header h2 {
+        font-size: 1.65rem;
     }
-    .footer-bottom {
-        flex-direction: column;
+
+    .formula-expression {
+        font-size: 1.35rem;
+    }
+
+    .screen-digits {
+        font-size: 3.5rem;
     }
 }
