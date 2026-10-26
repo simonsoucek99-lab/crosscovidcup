@@ -48,161 +48,228 @@
             
             <!-- LEVÝ SIDEBAR S NAVIGACÍ -->
             <aside class="neo-sidebar">
-                <div class="sidebar-title-bar">
-                    <span>SEKCE WEBU</span>
-                    <span>[MENU]</span>
-                </div>
-
+                <!-- HLAVNÍ MENU -->
+                <div class="sidebar-group-title">HLAVNÍ MENU</div>
                 <nav class="sidebar-nav">
-                    <a href="#vychodiska" class="nav-item">[ 1. O co jde ]</a>
-                    <a href="#pravidla" class="nav-item">[ 2. Pravidla ]</a>
-                    <a href="#bodovani" class="nav-item">[ 3. Bodování ]</a>
-                    <a href="#kalkulacka" class="nav-item">[ 4. Počítadlo bodů ]</a>
+                    <a href="#uvod" class="nav-item active" data-view="home">[ 📄 Úvod & Pravidla ]</a>
+                    <a href="#celkove-vysledky" class="nav-item nav-item-highlight" data-view="standings">[ 🏆 Celkové výsledky ]</a>
                 </nav>
 
+                <!-- NOVÁ SEKCE: ROČNÍK 2026 -->
+                <div class="sidebar-group-title sidebar-group-accent">ROČNÍK 2026</div>
+                <nav class="sidebar-nav" id="roundsNav">
+                    <a href="#kolo-1" class="nav-item nav-round" data-view="round" data-round="1">
+                        <span class="r-badge done">U1</span>
+                        <span class="r-label">Kolo 1: Prokopské údolí</span>
+                    </a>
+                    <a href="#kolo-2" class="nav-item nav-round active-round" data-view="round" data-round="2">
+                        <span class="r-badge live">LIVE</span>
+                        <span class="r-label">Kolo 2: Vidoule & Cibulka</span>
+                    </a>
+                    <a href="#kolo-3" class="nav-item nav-round" data-view="round" data-round="3">
+                        <span class="r-badge soon">PŘÍP</span>
+                        <span class="r-label">Kolo 3: Radotínský trail</span>
+                    </a>
+                </nav>
+
+                <!-- PŘEHLED SERIÁLU -->
                 <div class="sidebar-summary-card">
-                    <div class="summary-header">PŘEHLED KOLA:</div>
+                    <div class="summary-header">PRAVIDLA ZÁVODU:</div>
                     <div class="meta-row"><strong>TRAŤ:</strong> NOVÁ KAŽDÝ TÝDEN</div>
                     <div class="meta-row"><strong>START:</strong> VÍKEND ČAS / SÓLO</div>
-                    <div class="meta-row"><strong>FORMÁT:</strong> MAX 10 KM OKRUHY</div>
-                    <div class="meta-row"><strong>VÝSLEDKY:</strong> NEDĚLE VEČER</div>
+                    <div class="meta-row"><strong>ZÁPIS:</strong> FORMULÁŘ V DETAILU TRATI</div>
+                    <div class="meta-row"><strong>VÝSLEDKY:</strong> V NEDĚLI VEČER</div>
                 </div>
 
                 <div class="sidebar-notice-pill">
-                    ⚡ <strong>INFO:</strong> Čas se zapisuje přes formulář v detailu trati.
+                    ⚡ <strong>STATUS:</strong> Kolo 2 právě probíhá. Zapište svůj čas!
                 </div>
             </aside>
 
             <!-- PRAVÝ HLAVNÍ OBSAH -->
             <main class="main-content">
-                <!-- Neo-brutalism Oznámení -->
-                <div class="neo-notice">
-                    <div class="notice-tag">OZNÁMENÍ</div>
-                    <div class="notice-text">
-                        Společný běh probíhá každý víkend se stanoveným časem. Nová trať je vypsána každý týden a lze ji zaběhnout i individuálně.
+
+                <!-- ==========================================
+                     POHLED 1: ÚVOD & PRAVIDLA (HOME)
+                     ========================================== -->
+                <div id="view-home" class="view-panel active">
+                    <!-- Neo-brutalism Oznámení -->
+                    <div class="neo-notice">
+                        <div class="notice-tag">OZNÁMENÍ</div>
+                        <div class="notice-text">
+                            Společný běh probíhá každý víkend se stanoveným časem. Nová trať je vypsána každý týden a lze ji zaběhnout i individuálně.
+                        </div>
+                    </div>
+
+                    <!-- 1. Východiska a historie -->
+                    <section id="vychodiska" class="neo-card">
+                        <div class="card-header">
+                            <span class="section-tag">ODDÍL 1.0</span>
+                            <h2>Z ČEHO SERIÁL VYCHÁZÍ</h2>
+                        </div>
+                        
+                        <div class="card-body">
+                            <div class="quote-stripe">
+                                <p>
+                                    Pandemická situace na podzim 2020 ochromila život v této zemi, a to včetně organizovaného společenského 
+                                    života a trávení volného času. Virové vakuum, ve kterém jsme se ocitli, však dalo vzniknout 
+                                    netradičním a neformálním možnostem pohybových aktivit.
+                                </p>
+                                <p>
+                                    Mezi ty patří právě seriál běhů v přírodě <strong>Cross COVID cup</strong>. 
+                                    Bez čísel, bez zázemí a bez fáborků se scházíme v terénu, abychom se proběhli na hranici 
+                                    svých možností mimo frekventovaná místa městské části <strong>Praha 5</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 2. Pravidla seriálu -->
+                    <section id="pravidla" class="neo-card">
+                        <div class="card-header">
+                            <span class="section-tag">ODDÍL 2.0</span>
+                            <h2>PRAVIDLA SERIÁLU</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="rules-neo-grid">
+                                <div class="rule-box">
+                                    <span class="rule-index">01</span>
+                                    <div class="rule-content">
+                                        <h3>NOVÁ TRAŤ TÝDNĚ</h3>
+                                        <p>Každý týden je vypsána jedna nová trať.</p>
+                                    </div>
+                                </div>
+
+                                <div class="rule-box">
+                                    <span class="rule-index">02</span>
+                                    <div class="rule-content">
+                                        <h3>SPOLEČNĚ I SÓLO</h3>
+                                        <p>Každý víkend probíhá společný běh se stanoveným časem, ale trať lze zaběhnout i individuálně.</p>
+                                    </div>
+                                </div>
+
+                                <div class="rule-box">
+                                    <span class="rule-index">03</span>
+                                    <div class="rule-content">
+                                        <h3>ZÁPIS ČASU</h3>
+                                        <p>Zápis času si provádí každý běžec sám přes formulář v detailu trati.</p>
+                                    </div>
+                                </div>
+
+                                <div class="rule-box">
+                                    <span class="rule-index">04</span>
+                                    <div class="rule-content">
+                                        <h3>ODKRYTÍ VÝSLEDKŮ</h3>
+                                        <p>Výsledky se automaticky generují a odkrývají vždy v neděli večer (do té doby jsou skryté).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 3. Systém bodování -->
+                    <section id="bodovani" class="neo-card">
+                        <div class="card-header">
+                            <span class="section-tag">ODDÍL 3.0</span>
+                            <h2>SYSTÉM HODNOCENÍ A BODOVÁNÍ</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <p class="body-lead">Systém oceňuje účast, ale zároveň motivuje k souboji o každou vteřinu na trati:</p>
+
+                            <div class="formula-neo-box">
+                                <div class="formula-label">VÝPOČETNÍ FORMULE:</div>
+                                <div class="formula-expression">BODY = 1 BOD ZA ÚČAST + POČET PŘEDBĚHNUTÝCH ZÁVODNÍKŮ</div>
+                                <div class="formula-demo">
+                                    <strong>Příklad:</strong> Pokud startuje 12 běžců a skončíš na 4. místě, předběhl jsi 8 lidí. Získáváš: <code>1 + 8 = 9 bodů</code>.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 4. Kalkulačka bodů -->
+                    <section id="kalkulacka" class="neo-card">
+                        <div class="card-header">
+                            <span class="section-tag">ODDÍL 4.0</span>
+                            <h2>RYCHLÝ VÝPOČET BODŮ</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="calc-neo-container">
+                                <div class="calc-inputs-col">
+                                    <div class="neo-input-group">
+                                        <label for="calcRunners">CELKOVÝ POČET BĚŽCŮ NA TRATI:</label>
+                                        <input type="number" id="calcRunners" value="15" min="1">
+                                    </div>
+                                    <div class="neo-input-group">
+                                        <label for="calcPos">TVOJE CÍLOVÉ UMÍSTĚNÍ (POŘADÍ):</label>
+                                        <input type="number" id="calcPos" value="3" min="1">
+                                    </div>
+                                </div>
+
+                                <div class="calc-screen-col">
+                                    <span class="screen-title">PŘIPSANÉ BODY DO ŽEBŘÍČKU:</span>
+                                    <div class="screen-digits" id="scoreValue">13</div>
+                                    <div class="screen-legend" id="scoreExplanation">(1 bod účast + 12 předběhnutých)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- ==========================================
+                     POHLED 2: DETAIL KOLA (DYNAMIC ROUND)
+                     ========================================== -->
+                <div id="view-round" class="view-panel">
+                    <div id="roundDetailContainer">
+                        <!-- Dynamicky vkládáno přes script.js -->
                     </div>
                 </div>
 
-                <!-- 1. Východiska a historie -->
-                <section id="vychodiska" class="neo-card">
-                    <div class="card-header">
-                        <span class="section-tag">ODDÍL 1.0</span>
-                        <h2>Z ČEHO SERIÁL VYCHÁZÍ</h2>
-                    </div>
-                    
-                    <div class="card-body">
-                        <div class="quote-stripe">
-                            <p>
-                                Pandemická situace na podzim 2020 ochromila život v této zemi, a to včetně organizovaného společenského 
-                                života a trávení volného času. Virové vakuum, ve kterém jsme se ocitli, však dalo vzniknout 
-                                netradičním a neformálním možnostem pohybových aktivit.
-                            </p>
-                            <p>
-                                Mezi ty patří právě seriál běhů v přírodě <strong>Cross COVID cup</strong>. 
-                                Bez čísel, bez zázemí a bez fáborků se scházíme v terénu, abychom se proběhli na hranici 
-                                svých možností mimo frekventovaná místa městské části <strong>Praha 5</strong>.
-                            </p>
+                <!-- ==========================================
+                     POHLED 3: CELKOVÉ VÝSLEDKY SERIÁLU (STANDINGS)
+                     ========================================== -->
+                <div id="view-standings" class="view-panel">
+                    <section class="neo-card">
+                        <div class="card-header">
+                            <span class="section-tag">PRŮBĚŽNÉ POŘADÍ</span>
+                            <h2>CELKOVÉ VÝSLEDKY ROČNÍKU 2026</h2>
                         </div>
-                    </div>
-                </section>
 
-                <!-- 2. Pravidla seriálu -->
-                <section id="pravidla" class="neo-card">
-                    <div class="card-header">
-                        <span class="section-tag">ODDÍL 2.0</span>
-                        <h2>PRAVIDLA SERIÁLU</h2>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="rules-neo-grid">
-                            <div class="rule-box">
-                                <span class="rule-index">01</span>
-                                <div class="rule-content">
-                                    <h3>NOVÁ TRAŤ TÝDNĚ</h3>
-                                    <p>Každý týden je vypsána jedna nová trať.</p>
-                                </div>
+                        <div class="card-body">
+                            <div class="standings-intro">
+                                <p>Sčítání bodů z jednotlivých kol podle pravidla <strong>1 bod za účast + bod za každého poraženého soupeře</strong> v daném kole.</p>
                             </div>
 
-                            <div class="rule-box">
-                                <span class="rule-index">02</span>
-                                <div class="rule-content">
-                                    <h3>SPOLEČNĚ I SÓLO</h3>
-                                    <p>Každý víkend probíhá společný běh se stanoveným časem, ale trať lze zaběhnout i individuálně.</p>
-                                </div>
+                            <div class="table-container">
+                                <table class="neo-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-rank">POŘADÍ</th>
+                                            <th>BĚŽEC / BĚŽKYNĚ</th>
+                                            <th class="th-num">KOLO 1</th>
+                                            <th class="th-num">KOLO 2</th>
+                                            <th class="th-total">CELKEM BODY</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="overallStandingsBody">
+                                        <!-- Dynamicky vkládáno přes script.js -->
+                                    </tbody>
+                                </table>
                             </div>
 
-                            <div class="rule-box">
-                                <span class="rule-index">03</span>
-                                <div class="rule-content">
-                                    <h3>ZÁPIS ČASU</h3>
-                                    <p>Zápis času si provádí každý běžec sám přes formulář v detailu trati.</p>
-                                </div>
-                            </div>
-
-                            <div class="rule-box">
-                                <span class="rule-index">04</span>
-                                <div class="rule-content">
-                                    <h3>ODKRYTÍ VÝSLEDKŮ</h3>
-                                    <p>Výsledky se automaticky generují a odkrývají vždy v neděli večer (do té doby jsou skryté).</p>
-                                </div>
+                            <div class="standings-note">
+                                💡 <em>Výsledky se aktualizují vždy po uzavření a odhalení kola (nedělní půlnoc).</em>
                             </div>
                         </div>
-                    </div>
-                </section>
-
-                <!-- 3. Systém bodování -->
-                <section id="bodovani" class="neo-card">
-                    <div class="card-header">
-                        <span class="section-tag">ODDÍL 3.0</span>
-                        <h2>SYSTÉM HODNOCENÍ A BODOVÁNÍ</h2>
-                    </div>
-
-                    <div class="card-body">
-                        <p class="body-lead">Systém oceňuje účast, ale zároveň motivuje k souboji o každou vteřinu na trati:</p>
-
-                        <div class="formula-neo-box">
-                            <div class="formula-label">VÝPOČETNÍ FORMULE:</div>
-                            <div class="formula-expression">BODY = 1 BOD ZA ÚČAST + POČET PŘEDBĚHNUTÝCH ZÁVODNÍKŮ</div>
-                            <div class="formula-demo">
-                                <strong>Příklad:</strong> Pokud startuje 12 běžců a skončíš na 4. místě, předběhl jsi 8 lidí. Získáváš: <code>1 + 8 = 9 bodů</code>.
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 4. Kalkulačka bodů -->
-                <section id="kalkulacka" class="neo-card">
-                    <div class="card-header">
-                        <span class="section-tag">ODDÍL 4.0</span>
-                        <h2>RYCHLÝ VÝPOČET BODŮ</h2>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="calc-neo-container">
-                            <div class="calc-inputs-col">
-                                <div class="neo-input-group">
-                                    <label for="calcRunners">CELKOVÝ POČET BĚŽCŮ NA TRATI:</label>
-                                    <input type="number" id="calcRunners" value="15" min="1">
-                                </div>
-                                <div class="neo-input-group">
-                                    <label for="calcPos">TVOJE CÍLOVÉ UMÍSTĚNÍ (POŘADÍ):</label>
-                                    <input type="number" id="calcPos" value="3" min="1">
-                                </div>
-                            </div>
-
-                            <div class="calc-screen-col">
-                                <span class="screen-title">PŘIPSANÉ BODY DO ŽEBŘÍČKU:</span>
-                                <div class="screen-digits" id="scoreValue">13</div>
-                                <div class="screen-legend" id="scoreExplanation">(1 bod účast + 12 předběhnutých)</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
 
                 <!-- Patička -->
                 <footer class="neo-footer">
                     <div class="footer-left">
-                        <strong>CROSS COVID CUP</strong> • PRAHA 5
+                        <strong>CROSS COVID CUP</strong> • PRAHA 5 • ROČNÍK 2026
                     </div>
                     <div class="footer-right">
                         NEFORMÁLNÍ SPORTOVNÍ INICIATIVA • VŠECHNA PRÁVA VYHRAZENA
