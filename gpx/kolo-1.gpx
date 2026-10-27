@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Cross Covid Cup - Praha 5" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Cross Covid Cup - Kolo 1: Prokopské údolí a Dívčí hrady</name>
+    <desc>Trasa 1. kola seriálu Cross Covid Cup v přírodě Prahy 5 (8.4 km, +280 m)</desc>
+    <author>
+      <name>Cross Covid Cup</name>
+    </author>
+    <time>2026-10-18T10:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Kolo 1: Prokopské údolí &amp; Dívčí hrady (8.4 km)</name>
+    <type>Running</type>
+    <trkseg>
+      <trkpt lat="50.0425" lon="14.3980"><ele>205.0</ele><time>2026-10-18T10:00:00Z</time></trkpt>
+      <trkpt lat="50.0438" lon="14.3962"><ele>212.0</ele><time>2026-10-18T10:02:15Z</time></trkpt>
+      <trkpt lat="50.0452" lon="14.3935"><ele>224.0</ele><time>2026-10-18T10:05:00Z</time></trkpt>
+      <trkpt lat="50.0468" lon="14.3908"><ele>241.0</ele><time>2026-10-18T10:08:12Z</time></trkpt>
+      <trkpt lat="50.0489" lon="14.3882"><ele>263.0</ele><time>2026-10-18T10:11:45Z</time></trkpt>
+      <trkpt lat="50.0510" lon="14.3860"><ele>285.0</ele><time>2026-10-18T10:15:30Z</time></trkpt>
+      <trkpt lat="50.0528" lon="14.3892"><ele>298.0</ele><time>2026-10-18T10:18:50Z</time></trkpt>
+      <trkpt lat="50.0545" lon="14.3930"><ele>310.0</ele><time>2026-10-18T10:22:10Z</time></trkpt>
+      <trkpt lat="50.0532" lon="14.3975"><ele>295.0</ele><time>2026-10-18T10:25:35Z</time></trkpt>
+      <trkpt lat="50.0511" lon="14.4012"><ele>275.0</ele><time>2026-10-18T10:28:40Z</time></trkpt>
+      <trkpt lat="50.0485" lon="14.4038"><ele>250.0</ele><time>2026-10-18T10:31:55Z</time></trkpt>
+      <trkpt lat="50.0460" lon="14.4020"><ele>230.0</ele><time>2026-10-18T10:34:20Z</time></trkpt>
+      <trkpt lat="50.0441" lon="14.4002"><ele>215.0</ele><time>2026-10-18T10:36:10Z</time></trkpt>
+      <trkpt lat="50.0425" lon="14.3980"><ele>205.0</ele><time>2026-10-18T10:38:00Z</time></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

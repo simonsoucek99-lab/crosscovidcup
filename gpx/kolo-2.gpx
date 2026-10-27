@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Cross Covid Cup - Praha 5" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Cross Covid Cup - Kolo 2: Vidoule a Park Cibulka</name>
+    <desc>Trasa 2. kola seriálu Cross Covid Cup v přírodním parku Košíře (7.2 km, +210 m)</desc>
+    <author>
+      <name>Cross Covid Cup</name>
+    </author>
+    <time>2026-10-25T10:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Kolo 2: Vidoule &amp; Cibulka (7.2 km)</name>
+    <type>Running</type>
+    <trkseg>
+      <trkpt lat="50.0655" lon="14.3560"><ele>260.0</ele><time>2026-10-25T10:00:00Z</time></trkpt>
+      <trkpt lat="50.0670" lon="14.3582"><ele>275.0</ele><time>2026-10-25T10:02:40Z</time></trkpt>
+      <trkpt lat="50.0692" lon="14.3605"><ele>290.0</ele><time>2026-10-25T10:05:50Z</time></trkpt>
+      <trkpt lat="50.0715" lon="14.3630"><ele>315.0</ele><time>2026-10-25T10:09:10Z</time></trkpt>
+      <trkpt lat="50.0730" lon="14.3665"><ele>335.0</ele><time>2026-10-25T10:13:00Z</time></trkpt>
+      <trkpt lat="50.0718" lon="14.3702"><ele>342.0</ele><time>2026-10-25T10:16:30Z</time></trkpt>
+      <trkpt lat="50.0690" lon="14.3685"><ele>328.0</ele><time>2026-10-25T10:20:15Z</time></trkpt>
+      <trkpt lat="50.0668" lon="14.3640"><ele>305.0</ele><time>2026-10-25T10:23:45Z</time></trkpt>
+      <trkpt lat="50.0645" lon="14.3600"><ele>280.0</ele><time>2026-10-25T10:27:10Z</time></trkpt>
+      <trkpt lat="50.0655" lon="14.3560"><ele>260.0</ele><time>2026-10-25T10:30:30Z</time></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

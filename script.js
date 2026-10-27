@@ -16,8 +16,11 @@ const roundsData = {
         terrain: "VÁPENEC / LESNÍ TRAIL",
         startInfo: "Neděle 10:00 (Hlubočepy, viadukt)",
         description: "Klasický okruh členitým terénem Prokopského údolí se stoupáním na Dívčí hrady s panoramatickým výhledem na celou Prahu. Prudké skalnaté seběhy a technické pasáže na vápenci prověřily sílu v kotnících i tempo na hranici ANP.",
-        mapyUrl: "https://mapy.com/s/prokopske-udoli",
-        mapName: "Prokopské údolí (8.4 km okruh)",
+        mapyUrl: "https://mapy.cz/s/prokopske-udoli",
+        mapName: "Prokopské údolí & Dívčí hrady (8.4 km okruh)",
+        gpxFile: "gpx/kolo-1.gpx",
+        gpxDownloadName: "crosscovidcup_kolo_1.gpx",
+        mapImage: "maps/kolo-1.png",
         revealDeadline: "2026-10-19T23:59:59",
         defaultResults: [
             { name: "Martin Černý", time: "36:42" },
@@ -42,8 +45,11 @@ const roundsData = {
         terrain: "LESOPARK / SCHODY / PĚŠINY",
         startInfo: "Neděle 10:00 (Čínský pavilon Cibulka) nebo kdykoliv sólo",
         description: "Rychlejší, ale zrádný okruh kolem stolové hory Vidoule. Kombinace táhlých výběhů a technických kliček mezi stromy v přírodním parku Košíře-Motol a lesoparku Cibulka. Ideální pro tempový běh.",
-        mapyUrl: "https://mapy.com/s/vidoule-cibulka",
+        mapyUrl: "https://mapy.cz/s/vidoule-cibulka",
         mapName: "Vidoule & Cibulka okruh (7.2 km)",
+        gpxFile: "gpx/kolo-2.gpx",
+        gpxDownloadName: "crosscovidcup_kolo_2.gpx",
+        mapImage: "maps/kolo-2.png",
         revealDeadline: "2026-10-26T23:59:59",
         defaultResults: [
             { name: "Petr Svoboda", time: "32:10" },
@@ -66,8 +72,11 @@ const roundsData = {
         terrain: "KAMENITÁ ROKLE / PŘECHOD HŘEBENE",
         startInfo: "Neděle 10:00 (Radotín, lávka u řeky)",
         description: "Královská etapa seriálu v divokém Radotínském údolí podél potoka s technickým traverzovým seběhem zpět. Maximální prověrka vytrvalosti a práce v kopcích.",
-        mapyUrl: "https://mapy.com/s/radotinske-udoli",
+        mapyUrl: "https://mapy.cz/s/radotinske-udoli",
         mapName: "Radotínská rokle (9.6 km)",
+        gpxFile: "gpx/kolo-3.gpx",
+        gpxDownloadName: "crosscovidcup_kolo_3.gpx",
+        mapImage: "maps/kolo-3.png",
         revealDeadline: "2026-11-02T23:59:59",
         defaultResults: []
     }
@@ -300,21 +309,21 @@ function renderRoundDetail(roundId) {
                     <span class="accordion-badge">[ − ]</span>
                 </div>
                 <div class="card-body collapsible-content">
-                    <div class="map-header-row">
-                        <button class="btn-gpx" onclick="downloadGpx(${round.id})">
+                    <div class="map-actions-row">
+                        <a href="${round.gpxFile}" download="${round.gpxDownloadName}" class="btn-gpx">
                             💾 STÁHNOUT GPX SOUBOR TRATI
-                        </button>
+                        </a>
+                        <a href="${round.mapyUrl}" target="_blank" rel="noopener noreferrer" class="btn-mapy-link">
+                            ↗ OTEVŘÍT TRASU NA MAPY.CZ
+                        </a>
                     </div>
 
-                    <div class="map-iframe-container">
-                        <div class="map-terrain-decor"></div>
-                        <div class="map-content-overlay">
-                            <span class="map-logo-tag">MAPY.CZ • ZÁSTUPNÝ NÁHLED</span>
-                            <h4>${escapeHtml(round.mapName)}</h4>
-                            <p>Členitá trať vedená přírodními lokalitami Městské části Praha 5. Interaktivní GPX trasa a výškový profil.</p>
-                            <a href="${round.mapyUrl}" target="_blank" rel="noopener noreferrer" class="btn-mapy">
-                                ↗ OTEVŘÍT TRASU NA MAPY.CZ
-                            </a>
+                    <!-- Výřez mapy s vyznačenou trasou -->
+                    <div class="map-image-wrapper">
+                        <img src="${round.mapImage}" alt="Mapa trati ${escapeHtml(round.title)}" class="map-preview-img">
+                        <div class="map-caption">
+                            <span>📍 ${escapeHtml(round.mapName)}</span>
+                            <span class="map-status-pill">VÝŘEZ Z MAPY.CZ</span>
                         </div>
                     </div>
                 </div>

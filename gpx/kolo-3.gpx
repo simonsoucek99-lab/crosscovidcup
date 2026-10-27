@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Cross Covid Cup - Praha 5" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>Cross Covid Cup - Kolo 3: Radotínské údolí a Lochkov</name>
+    <desc>Trasa 3. kola seriálu Cross Covid Cup v Radotínském údolí (9.6 km, +320 m)</desc>
+    <author>
+      <name>Cross Covid Cup</name>
+    </author>
+    <time>2026-11-01T10:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Kolo 3: Radotínské údolí &amp; Lochkov (9.6 km)</name>
+    <type>Running</type>
+    <trkseg>
+      <trkpt lat="49.9850" lon="14.3580"><ele>215.0</ele><time>2026-11-01T10:00:00Z</time></trkpt>
+      <trkpt lat="49.9875" lon="14.3550"><ele>225.0</ele><time>2026-11-01T10:03:30Z</time></trkpt>
+      <trkpt lat="49.9910" lon="14.3510"><ele>245.0</ele><time>2026-11-01T10:07:45Z</time></trkpt>
+      <trkpt lat="49.9945" lon="14.3480"><ele>270.0</ele><time>2026-11-01T10:12:10Z</time></trkpt>
+      <trkpt lat="49.9980" lon="14.3460"><ele>310.0</ele><time>2026-11-01T10:17:30Z</time></trkpt>
+      <trkpt lat="50.0020" lon="14.3490"><ele>340.0</ele><time>2026-11-01T10:23:00Z</time></trkpt>
+      <trkpt lat="49.9990" lon="14.3540"><ele>325.0</ele><time>2026-11-01T10:28:15Z</time></trkpt>
+      <trkpt lat="49.9940" lon="14.3580"><ele>280.0</ele><time>2026-11-01T10:33:40Z</time></trkpt>
+      <trkpt lat="49.9890" lon="14.3600"><ele>240.0</ele><time>2026-11-01T10:38:50Z</time></trkpt>
+      <trkpt lat="49.9850" lon="14.3580"><ele>215.0</ele><time>2026-11-01T10:43:20Z</time></trkpt>
+    </trkseg>
+  </trk>
+</gpx>
