@@ -1,5 +1,5 @@
 /* ============================================================
-   CROSS COVID CUP — NEO-BRUTALISM (HEADER + SIDEBAR + KOLA + VÝSLEDKY)
+   CROSS COVID CUP — NEO-BRUTALISM (RESPONSIVE & COLLAPSIBLE ACCORDION)
    ============================================================ */
 
 :root {
@@ -19,7 +19,7 @@
     --neo-shadow-lg: 8px 8px 0px #000000;
 }
 
-/* Úplné vynulování zaoblení - Neo-brutalism ostré rohy */
+/* Ostré hrany - Neo-brutalism */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -30,11 +30,13 @@
 html {
     scroll-behavior: smooth;
     background-color: var(--bg-black);
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 body {
     background-color: var(--bg-black);
-    /* Retro mřížková textura */
     background-image: 
         linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
@@ -42,23 +44,32 @@ body {
     color: var(--text-main);
     font-family: var(--font-body);
     line-height: 1.6;
-    padding: 24px 16px;
     min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
+/* Hlavní obal webu - jednotná šířka */
 .site-container {
     max-width: 1240px;
+    width: 100%;
     margin: 0 auto;
+    padding: 24px 16px;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 /* ============================================================
-   1. HORNÍ LIŠTA (HEADER) S PLNYM LOGEM A POPISY
+   1. HORNÍ LIŠTA (HEADER)
    ============================================================ */
 .neo-header {
     background: var(--card-white);
     border: 3.5px solid var(--border-black);
     box-shadow: var(--neo-shadow);
-    margin-bottom: 26px;
+    margin-bottom: 24px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .header-meta-bar {
@@ -72,6 +83,8 @@ body {
     font-weight: 700;
     padding: 6px 16px;
     letter-spacing: 0.5px;
+    flex-wrap: wrap;
+    gap: 4px;
 }
 
 .live-tag {
@@ -100,6 +113,8 @@ body {
     gap: 24px;
     padding: 20px 24px;
     background: #ffffff;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .header-logo-box {
@@ -108,31 +123,34 @@ body {
     box-shadow: var(--neo-shadow-sm);
     background: #ffffff;
     padding: 8px;
+    max-width: 220px;
 }
 
 .full-logo {
-    max-width: 220px;
+    max-width: 100%;
     height: auto;
     display: block;
 }
 
 .header-info-box {
     flex-grow: 1;
+    min-width: 0;
 }
 
 .main-title {
     font-family: var(--font-heading);
-    font-size: 3.4rem;
+    font-size: clamp(2rem, 5vw, 3.4rem);
     line-height: 0.95;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     color: var(--border-black);
     text-transform: uppercase;
     margin-bottom: 4px;
+    word-break: break-word;
 }
 
 .subtitle-text {
     font-family: var(--font-mono);
-    font-size: 0.88rem;
+    font-size: clamp(0.75rem, 2vw, 0.88rem);
     font-weight: 700;
     color: var(--accent-red);
     letter-spacing: 0.5px;
@@ -162,8 +180,10 @@ body {
    ============================================================ */
 .layout-columns {
     display: flex;
-    gap: 26px;
+    gap: 24px;
     align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* ============================================================
@@ -181,6 +201,32 @@ body {
     display: flex;
     flex-direction: column;
     gap: 14px;
+    box-sizing: border-box;
+}
+
+/* Tlačítko pro rozbalení na mobilu */
+.sidebar-mobile-toggle {
+    display: none;
+    width: 100%;
+    background: var(--border-black);
+    color: var(--accent-yellow);
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 12px 14px;
+    border: 2.5px solid var(--border-black);
+    box-shadow: var(--neo-shadow-sm);
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-collapsible-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
 }
 
 .sidebar-group-title {
@@ -204,6 +250,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    width: 100%;
 }
 
 .nav-item {
@@ -221,6 +268,8 @@ body {
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .nav-item:hover {
@@ -291,6 +340,8 @@ body {
     font-family: var(--font-mono);
     font-size: 0.72rem;
     margin-top: 4px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .summary-header {
@@ -308,23 +359,29 @@ body {
     font-size: 0.78rem;
     line-height: 1.35;
     font-family: var(--font-mono);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* ============================================================
-   HLAVNÍ OBSAHOVÁ OBLAST & PŘEPÍNÁNÍ POHLEDŮ (VIEWS)
+   HLAVNÍ OBSAHOVÁ OBLAST & POHLEDY (VIEWS)
    ============================================================ */
 .main-content {
     flex: 1;
     min-width: 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 24px;
+    box-sizing: border-box;
 }
 
 .view-panel {
     display: none;
     flex-direction: column;
     gap: 24px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .view-panel.active {
@@ -340,6 +397,8 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .notice-tag {
@@ -358,32 +417,46 @@ body {
     font-size: 0.95rem;
     line-height: 1.4;
     color: var(--border-black);
+    word-break: break-word;
 }
 
 /* ============================================================
-   KARTY / BLOKY
+   ROZBALOVACÍ KARTY (ACCORDION / COLLAPSIBLE CARDS)
    ============================================================ */
 .neo-card {
     background: var(--card-white);
     border: 3.5px solid var(--border-black);
     box-shadow: var(--neo-shadow);
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
-.card-header {
-    background: #ffffff;
-    border-bottom: 3.5px solid var(--border-black);
-    padding: 18px 22px;
+/* Klikatelná hlavička rozbalovací karty */
+.collapsible-toggle {
+    cursor: pointer;
+    user-select: none;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 14px;
+    transition: background 0.15s ease;
+    padding: 18px 22px;
+    background: #ffffff;
+    border-bottom: 3.5px solid var(--border-black);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.collapsible-toggle:hover {
+    background: #fdfaf2;
 }
 
 .card-header-left {
     display: flex;
     align-items: center;
     gap: 14px;
+    flex-wrap: wrap;
+    min-width: 0;
 }
 
 .section-tag {
@@ -396,26 +469,62 @@ body {
     border: 2px solid var(--border-black);
     box-shadow: 2px 2px 0px #000;
     letter-spacing: 1px;
+    flex-shrink: 0;
 }
 
 .card-header h2 {
     font-family: var(--font-heading);
-    font-size: 2.1rem;
-    line-height: 1;
+    font-size: clamp(1.4rem, 4vw, 2.1rem);
+    line-height: 1.05;
     letter-spacing: 1.5px;
     color: var(--border-black);
     text-transform: uppercase;
+    word-break: break-word;
+}
+
+/* Tlačítkový odznáček stavu rozbalení */
+.accordion-badge {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 800;
+    background: var(--accent-yellow);
+    color: var(--border-black);
+    border: 2px solid var(--border-black);
+    box-shadow: 2px 2px 0px #000;
+    padding: 4px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+    margin-left: 10px;
+}
+
+/* Sbalený stav karty */
+.neo-collapsible.is-collapsed .collapsible-content {
+    display: none !important;
+}
+
+.neo-collapsible.is-collapsed .collapsible-toggle {
+    border-bottom: none;
+}
+
+.neo-collapsible.is-collapsed .accordion-badge {
+    background: #e2e8f0;
 }
 
 .card-body {
     padding: 24px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .body-lead {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     font-weight: 600;
     margin-bottom: 16px;
     color: #222;
+    word-break: break-word;
 }
 
 /* Východiska stripe */
@@ -426,13 +535,16 @@ body {
     border-right: 2px solid var(--border-black);
     border-bottom: 2px solid var(--border-black);
     padding: 18px 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .quote-stripe p {
-    font-size: 1.02rem;
-    line-height: 1.65;
+    font-size: 1rem;
+    line-height: 1.6;
     margin-bottom: 12px;
     color: #222;
+    word-break: break-word;
 }
 
 .quote-stripe p:last-child {
@@ -443,18 +555,21 @@ body {
 .rules-neo-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    gap: 16px;
+    width: 100%;
 }
 
 .rule-box {
     background: #ffffff;
     border: 3px solid var(--border-black);
     box-shadow: var(--neo-shadow-sm);
-    padding: 18px;
+    padding: 16px;
     display: flex;
-    gap: 16px;
+    gap: 14px;
     align-items: flex-start;
     transition: all 0.15s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .rule-box:hover {
@@ -464,19 +579,19 @@ body {
 
 .rule-index {
     font-family: var(--font-heading);
-    font-size: 2.2rem;
+    font-size: 2rem;
     line-height: 1;
     background: var(--accent-yellow);
     color: var(--border-black);
     border: 2px solid var(--border-black);
-    padding: 4px 10px;
+    padding: 4px 8px;
     box-shadow: 2px 2px 0px #000;
     flex-shrink: 0;
 }
 
 .rule-content h3 {
     font-family: var(--font-heading);
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     letter-spacing: 1px;
     margin-bottom: 4px;
     color: var(--border-black);
@@ -484,10 +599,11 @@ body {
 }
 
 .rule-content p {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     font-weight: 500;
     color: #333333;
-    line-height: 1.45;
+    line-height: 1.4;
+    word-break: break-word;
 }
 
 /* Bodování */
@@ -495,12 +611,15 @@ body {
     background: var(--accent-yellow);
     border: 3.5px solid var(--border-black);
     box-shadow: var(--neo-shadow-sm);
-    padding: 22px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    word-break: break-word;
 }
 
 .formula-label {
     font-family: var(--font-mono);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--accent-red);
     letter-spacing: 1px;
@@ -509,18 +628,20 @@ body {
 
 .formula-expression {
     font-family: var(--font-heading);
-    font-size: 1.85rem;
-    line-height: 1.1;
+    font-size: clamp(1.15rem, 4.5vw, 1.85rem);
+    line-height: 1.15;
     letter-spacing: 1px;
     color: var(--border-black);
     margin-bottom: 12px;
+    word-break: break-word;
 }
 
 .formula-demo {
     background: #ffffff;
     border: 2px solid var(--border-black);
     padding: 10px 14px;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    word-break: break-word;
 }
 
 .formula-demo code {
@@ -535,13 +656,15 @@ body {
 .calc-neo-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 22px;
+    gap: 20px;
+    width: 100%;
 }
 
 .calc-inputs-col {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
+    width: 100%;
 }
 
 .neo-input-group {
@@ -549,12 +672,14 @@ body {
     border: 3px solid var(--border-black);
     box-shadow: var(--neo-shadow-sm);
     padding: 14px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .neo-input-group label {
     display: block;
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.5px;
     margin-bottom: 8px;
@@ -563,15 +688,16 @@ body {
 
 .neo-input-group input {
     width: 100%;
-    padding: 10px 14px;
+    padding: 10px 12px;
     font-family: var(--font-mono);
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 700;
     border: 2.5px solid var(--border-black);
     background: #ffffff;
     color: var(--border-black);
     box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.1);
     outline: none;
+    box-sizing: border-box;
 }
 
 .neo-input-group input:focus {
@@ -590,11 +716,13 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .screen-title {
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--accent-yellow);
     letter-spacing: 1px;
     margin-bottom: 4px;
@@ -602,7 +730,7 @@ body {
 
 .screen-digits {
     font-family: var(--font-heading);
-    font-size: 4.8rem;
+    font-size: clamp(3.2rem, 8vw, 4.8rem);
     line-height: 0.9;
     color: var(--accent-yellow);
     letter-spacing: 2px;
@@ -610,17 +738,54 @@ body {
 
 .screen-legend {
     font-family: var(--font-mono);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: #bbbbbb;
     margin-top: 8px;
+    word-break: break-word;
 }
 
 /* ============================================================
-   KOMPONENTA: DETAIL KOLA (ROUND DETAIL)
+   KOMPONENTA: DETAIL KOLA (ROUND DETAIL - ROZBALOVACÍ KARTY)
    ============================================================ */
+.round-main-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.round-top-card {
+    background: var(--card-white);
+    border: 3.5px solid var(--border-black);
+    box-shadow: var(--neo-shadow);
+    padding: 20px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.round-top-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.round-top-title-group h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 5vw, 2.3rem);
+    line-height: 1;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
 .round-status-badge {
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 700;
     padding: 5px 12px;
     border: 2px solid var(--border-black);
@@ -628,6 +793,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    flex-shrink: 0;
 }
 
 .round-status-badge.live {
@@ -640,24 +806,32 @@ body {
     color: #111;
 }
 
+.round-status-badge.upcoming {
+    background: #fff3c4;
+    color: #775c00;
+}
+
 .round-params-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .param-box {
     background: #f8fafc;
     border: 2.5px solid var(--border-black);
     box-shadow: var(--neo-shadow-sm);
-    padding: 12px;
+    padding: 10px 8px;
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .param-label {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
     color: var(--text-muted);
     text-transform: uppercase;
@@ -667,52 +841,35 @@ body {
 
 .param-value {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     line-height: 1;
     color: var(--border-black);
     letter-spacing: 1px;
 }
 
 /* Propozice text trati */
-.round-desc-card {
-    background: #fafafa;
-    border: 2.5px solid var(--border-black);
-    padding: 18px 20px;
-    margin-bottom: 24px;
-}
-
-.round-desc-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-    color: var(--border-black);
-}
-
-.round-desc-card p {
-    font-size: 1rem;
-    color: #333;
+.round-desc-text {
+    font-size: 0.98rem;
+    color: #222;
     line-height: 1.6;
+    word-break: break-word;
+}
+
+.round-start-notice {
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent-red);
+    word-break: break-word;
 }
 
 /* Mapa trati & GPX box */
-.map-section {
-    margin-bottom: 26px;
-}
-
 .map-header-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.map-header-row h3 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    letter-spacing: 1px;
+    margin-bottom: 12px;
 }
 
 .btn-gpx {
@@ -721,15 +878,16 @@ body {
     font-family: var(--font-mono);
     font-size: 0.82rem;
     font-weight: 700;
-    padding: 8px 16px;
+    padding: 8px 14px;
     border: 2.5px solid var(--border-black);
     box-shadow: var(--neo-shadow-sm);
-    text-decoration: none;
     cursor: pointer;
     transition: all 0.15s ease;
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    max-width: 100%;
+    word-break: break-word;
 }
 
 .btn-gpx:hover {
@@ -747,8 +905,8 @@ body {
 .map-iframe-container {
     background: #e6ebed;
     border: 3.5px solid var(--border-black);
-    box-shadow: var(--neo-shadow);
-    height: 340px;
+    box-shadow: var(--neo-shadow-sm);
+    height: 320px;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -756,7 +914,9 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 24px;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .map-terrain-decor {
@@ -777,41 +937,44 @@ body {
     background: #ffffff;
     border: 3px solid var(--border-black);
     box-shadow: var(--neo-shadow-sm);
-    padding: 20px 24px;
-    max-width: 480px;
+    padding: 18px 20px;
+    max-width: 440px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .map-logo-tag {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 800;
     background: #e11d48;
     color: #fff;
     padding: 3px 8px;
     display: inline-block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .map-content-overlay h4 {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: 1.45rem;
     letter-spacing: 1px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    word-break: break-word;
 }
 
 .map-content-overlay p {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: #444;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .btn-mapy {
     background: var(--accent-yellow);
     color: #000;
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 700;
-    padding: 8px 16px;
+    padding: 8px 14px;
     border: 2px solid var(--border-black);
     box-shadow: 2px 2px 0px #000;
     text-decoration: none;
@@ -828,52 +991,22 @@ body {
 /* ============================================================
    FORMULÁŘ: ZÁPIS ČASU
    ============================================================ */
-.entry-form-card {
-    background: #ffffff;
-    border: 3.5px solid var(--border-black);
-    box-shadow: var(--neo-shadow);
-    padding: 22px;
-    margin-bottom: 26px;
-}
-
-.entry-form-header {
-    border-bottom: 2.5px solid var(--border-black);
-    padding-bottom: 10px;
-    margin-bottom: 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.entry-form-header h3 {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    letter-spacing: 1px;
-    color: var(--border-black);
-}
-
-.form-info-tag {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    background: var(--accent-yellow);
-    border: 1.5px solid var(--border-black);
-    padding: 3px 8px;
-    font-weight: 700;
-}
-
 .neo-form-row {
     display: grid;
     grid-template-columns: 1.5fr 1fr auto;
-    gap: 16px;
+    gap: 14px;
     align-items: flex-end;
+    width: 100%;
+}
+
+.form-field {
+    width: 100%;
 }
 
 .form-field label {
     display: block;
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 700;
     margin-bottom: 6px;
     letter-spacing: 0.5px;
@@ -881,14 +1014,15 @@ body {
 
 .form-field input {
     width: 100%;
-    padding: 10px 14px;
+    padding: 10px 12px;
     font-family: var(--font-mono);
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 700;
     border: 2.5px solid var(--border-black);
     background: #ffffff;
     outline: none;
     box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
 }
 
 .form-field input:focus {
@@ -900,14 +1034,15 @@ body {
     background: var(--accent-red);
     color: #ffffff;
     font-family: var(--font-mono);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     font-weight: 700;
-    padding: 11px 22px;
+    padding: 11px 20px;
     border: 2.5px solid var(--border-black);
     box-shadow: var(--neo-shadow-sm);
     cursor: pointer;
     transition: all 0.15s ease;
     white-space: nowrap;
+    text-align: center;
 }
 
 .btn-submit-time:hover {
@@ -929,6 +1064,7 @@ body {
     font-weight: 700;
     display: none;
     border: 2px solid var(--border-black);
+    word-break: break-word;
 }
 
 .form-feedback.success {
@@ -944,43 +1080,26 @@ body {
 }
 
 /* ============================================================
-   VÝSLEDKY KOLA (SKRYTÉ VS. ODHALENÉ)
+   VÝSLEDKY KOLA
    ============================================================ */
-.results-card {
-    background: #ffffff;
-    border: 3.5px solid var(--border-black);
-    box-shadow: var(--neo-shadow);
-    padding: 22px;
-}
-
-.results-header-bar {
+.results-header-actions {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2.5px solid var(--border-black);
-    padding-bottom: 12px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-    gap: 12px;
+    justify-content: flex-end;
+    margin-bottom: 12px;
 }
 
-.results-header-bar h3 {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    letter-spacing: 1px;
-}
-
-/* Simulátor tlačítko pro testování */
 .btn-simulate {
     background: #f1f5f9;
     border: 2px solid var(--border-black);
     box-shadow: 2px 2px 0px #000;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    padding: 6px 12px;
+    padding: 6px 10px;
     cursor: pointer;
     transition: all 0.15s ease;
+    max-width: 100%;
+    word-break: break-word;
 }
 
 .btn-simulate:hover {
@@ -989,36 +1108,40 @@ body {
     box-shadow: 3px 3px 0px #000;
 }
 
-/* Skrytý stav výsledků (Před nedělí 23:59) */
+/* Skrytý stav výsledků */
 .results-hidden-box {
     background: var(--accent-yellow);
     border: 3px solid var(--border-black);
     box-shadow: var(--neo-shadow-sm);
-    padding: 28px 24px;
+    padding: 24px 18px;
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .lock-icon {
-    font-size: 2.5rem;
-    margin-bottom: 8px;
+    font-size: 2.2rem;
+    margin-bottom: 6px;
 }
 
 .results-hidden-box h4 {
     font-family: var(--font-heading);
-    font-size: 2.1rem;
+    font-size: clamp(1.5rem, 5vw, 2.1rem);
     letter-spacing: 1.5px;
     line-height: 1.1;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     color: var(--border-black);
+    word-break: break-word;
 }
 
 .results-hidden-box p {
     font-family: var(--font-mono);
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-weight: 700;
     color: #222;
     max-width: 540px;
-    margin: 0 auto 14px;
+    margin: 0 auto 12px;
+    word-break: break-word;
 }
 
 .registered-runners-count {
@@ -1026,19 +1149,26 @@ body {
     background: var(--border-black);
     color: var(--accent-yellow);
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    padding: 6px 14px;
-    letter-spacing: 1px;
+    padding: 6px 12px;
+    letter-spacing: 0.5px;
+    word-break: break-word;
 }
 
-/* Tabulka s výsledky */
+/* Tabulka */
 .table-container {
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+    box-sizing: border-box;
 }
 
 .neo-table {
     width: 100%;
+    min-width: 320px;
     border-collapse: collapse;
     font-family: var(--font-body);
 }
@@ -1047,20 +1177,22 @@ body {
     background: var(--border-black);
     color: #ffffff;
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    padding: 12px 14px;
+    padding: 10px 12px;
     text-align: left;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     border: 2px solid var(--border-black);
+    white-space: nowrap;
 }
 
 .neo-table td {
-    padding: 12px 14px;
+    padding: 10px 12px;
     border: 2px solid var(--border-black);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     font-weight: 600;
     background: #ffffff;
+    word-break: break-word;
 }
 
 .neo-table tbody tr:nth-child(even) td {
@@ -1072,29 +1204,29 @@ body {
 }
 
 .th-rank {
-    width: 90px;
+    width: 75px;
     text-align: center;
 }
 
 .th-num {
-    width: 110px;
+    width: 95px;
     text-align: center;
 }
 
 .th-total {
-    width: 140px;
+    width: 120px;
     text-align: center;
     background: var(--accent-red) !important;
 }
 
 .rank-badge {
     display: inline-block;
-    width: 32px;
-    height: 32px;
-    line-height: 28px;
+    width: 28px;
+    height: 28px;
+    line-height: 24px;
     text-align: center;
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     border: 2px solid var(--border-black);
     font-weight: 800;
 }
@@ -1107,24 +1239,27 @@ body {
 .td-time {
     font-family: var(--font-mono);
     font-weight: 700;
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     text-align: center;
+    white-space: nowrap;
 }
 
 .td-points {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     text-align: center;
     color: var(--accent-red);
+    white-space: nowrap;
 }
 
 .td-total-points {
     font-family: var(--font-heading);
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     text-align: center;
     background: #fff3c4 !important;
     color: var(--border-black);
     font-weight: 800;
+    white-space: nowrap;
 }
 
 /* ============================================================
@@ -1133,15 +1268,16 @@ body {
 .standings-intro {
     background: #fafafa;
     border: 2.5px solid var(--border-black);
-    padding: 14px 18px;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    font-size: 0.92rem;
+    word-break: break-word;
 }
 
 .standings-note {
-    margin-top: 16px;
+    margin-top: 14px;
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
 }
 
@@ -1161,6 +1297,8 @@ body {
     font-family: var(--font-mono);
     font-size: 0.78rem;
     font-weight: 700;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .neo-footer strong {
@@ -1168,13 +1306,33 @@ body {
 }
 
 /* ============================================================
-   RESPONZIVITA
+   RESPONZIVITA & JEDNOTNÁ MOBILNÍ ŠÍŘKA (BEZ VYBOČENÍ)
    ============================================================ */
 @media (max-width: 960px) {
+    :root {
+        --neo-shadow: 4px 4px 0px #000000;
+        --neo-shadow-sm: 2px 2px 0px #000000;
+        --neo-shadow-lg: 5px 5px 0px #000000;
+    }
+
+    body {
+        padding: 0;
+    }
+
+    .site-container {
+        padding: 12px 10px;
+    }
+
     .header-main-row {
         flex-direction: column;
         text-align: center;
-        gap: 16px;
+        padding: 16px 14px;
+        gap: 14px;
+    }
+
+    .header-logo-box {
+        max-width: 180px;
+        margin: 0 auto;
     }
 
     .manifest-strip {
@@ -1183,12 +1341,28 @@ body {
 
     .layout-columns {
         flex-direction: column;
-        gap: 20px;
+        gap: 18px;
     }
 
+    /* Mobilní rozbalovací sidebar */
     .neo-sidebar {
         width: 100%;
         position: static;
+        padding: 14px;
+        gap: 0;
+    }
+
+    .sidebar-mobile-toggle {
+        display: flex;
+    }
+
+    .sidebar-collapsible-body {
+        display: none;
+        margin-top: 14px;
+    }
+
+    .sidebar-collapsible-body.is-open {
+        display: flex;
     }
 
     .round-params-grid {
@@ -1199,6 +1373,10 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .btn-submit-time {
+        width: 100%;
+    }
+
     .rules-neo-grid {
         grid-template-columns: 1fr;
     }
@@ -1206,22 +1384,97 @@ body {
     .calc-neo-container {
         grid-template-columns: 1fr;
     }
+
+    .collapsible-toggle {
+        padding: 14px 16px;
+    }
+
+    .card-body {
+        padding: 16px 14px;
+    }
 }
 
 @media (max-width: 600px) {
-    body {
-        padding: 12px 8px;
+    .site-container {
+        padding: 8px 6px;
+    }
+
+    .header-meta-bar {
+        flex-direction: column;
+        text-align: center;
+        padding: 6px 8px;
+        font-size: 0.72rem;
     }
 
     .main-title {
-        font-size: 2.4rem;
+        font-size: 2.1rem;
+    }
+
+    .subtitle-text {
+        font-size: 0.78rem;
+    }
+
+    .tag-pill {
+        font-size: 0.68rem;
+        padding: 2px 6px;
+    }
+
+    .card-header-left {
+        gap: 8px;
     }
 
     .card-header h2 {
-        font-size: 1.65rem;
+        font-size: 1.35rem;
+    }
+
+    .accordion-badge {
+        font-size: 0.8rem;
+        padding: 3px 6px;
     }
 
     .round-params-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+
+    .param-box {
+        padding: 6px 4px;
+    }
+
+    .param-value {
+        font-size: 1.15rem;
+    }
+
+    .map-iframe-container {
+        height: 270px;
+        padding: 10px;
+    }
+
+    .map-content-overlay {
+        padding: 14px 12px;
+    }
+
+    .map-content-overlay h4 {
+        font-size: 1.25rem;
+    }
+
+    .btn-mapy {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+    }
+
+    .neo-notice {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 10px 12px;
+    }
+
+    .neo-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 6px;
+        font-size: 0.72rem;
+        padding: 12px;
     }
 }

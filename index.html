@@ -2,7 +2,7 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>CROSS COVID CUP — Neformální běžecký seriál</title>
     
     <!-- Favicona s výřezem běžců z loga -->
@@ -48,41 +48,49 @@
             
             <!-- LEVÝ SIDEBAR S NAVIGACÍ -->
             <aside class="neo-sidebar">
-                <!-- HLAVNÍ MENU -->
-                <div class="sidebar-group-title">HLAVNÍ MENU</div>
-                <nav class="sidebar-nav">
-                    <a href="#uvod" class="nav-item active" data-view="home">[ 📄 Úvod & Pravidla ]</a>
-                    <a href="#celkove-vysledky" class="nav-item nav-item-highlight" data-view="standings">[ 🏆 Celkové výsledky ]</a>
-                </nav>
+                <!-- Mobilní přepínač rozbalení menu -->
+                <button class="sidebar-mobile-toggle" id="sidebarMobileToggle" aria-expanded="false">
+                    <span class="toggle-text">⚡ ROČNÍK 2026 & MENU</span>
+                    <span class="toggle-arrow" id="sidebarToggleArrow">[ ROZBALIT ▼ ]</span>
+                </button>
 
-                <!-- NOVÁ SEKCE: ROČNÍK 2026 -->
-                <div class="sidebar-group-title sidebar-group-accent">ROČNÍK 2026</div>
-                <nav class="sidebar-nav" id="roundsNav">
-                    <a href="#kolo-1" class="nav-item nav-round" data-view="round" data-round="1">
-                        <span class="r-badge done">U1</span>
-                        <span class="r-label">Kolo 1: Prokopské údolí</span>
-                    </a>
-                    <a href="#kolo-2" class="nav-item nav-round active-round" data-view="round" data-round="2">
-                        <span class="r-badge live">LIVE</span>
-                        <span class="r-label">Kolo 2: Vidoule & Cibulka</span>
-                    </a>
-                    <a href="#kolo-3" class="nav-item nav-round" data-view="round" data-round="3">
-                        <span class="r-badge soon">PŘÍP</span>
-                        <span class="r-label">Kolo 3: Radotínský trail</span>
-                    </a>
-                </nav>
+                <div class="sidebar-collapsible-body" id="sidebarCollapsibleBody">
+                    <!-- HLAVNÍ MENU -->
+                    <div class="sidebar-group-title">HLAVNÍ MENU</div>
+                    <nav class="sidebar-nav">
+                        <a href="#uvod" class="nav-item active" data-view="home">[ 📄 Úvod & Pravidla ]</a>
+                        <a href="#celkove-vysledky" class="nav-item nav-item-highlight" data-view="standings">[ 🏆 Celkové výsledky ]</a>
+                    </nav>
 
-                <!-- PŘEHLED SERIÁLU -->
-                <div class="sidebar-summary-card">
-                    <div class="summary-header">PRAVIDLA ZÁVODU:</div>
-                    <div class="meta-row"><strong>TRAŤ:</strong> NOVÁ KAŽDÝ TÝDEN</div>
-                    <div class="meta-row"><strong>START:</strong> VÍKEND ČAS / SÓLO</div>
-                    <div class="meta-row"><strong>ZÁPIS:</strong> FORMULÁŘ V DETAILU TRATI</div>
-                    <div class="meta-row"><strong>VÝSLEDKY:</strong> V NEDĚLI VEČER</div>
-                </div>
+                    <!-- SEKCE: ROČNÍK 2026 -->
+                    <div class="sidebar-group-title sidebar-group-accent">ROČNÍK 2026 — KOLA</div>
+                    <nav class="sidebar-nav" id="roundsNav">
+                        <a href="#kolo-1" class="nav-item nav-round" data-view="round" data-round="1">
+                            <span class="r-badge done">U1</span>
+                            <span class="r-label">Kolo 1: Prokopské údolí</span>
+                        </a>
+                        <a href="#kolo-2" class="nav-item nav-round active-round" data-view="round" data-round="2">
+                            <span class="r-badge live">LIVE</span>
+                            <span class="r-label">Kolo 2: Vidoule & Cibulka</span>
+                        </a>
+                        <a href="#kolo-3" class="nav-item nav-round" data-view="round" data-round="3">
+                            <span class="r-badge soon">PŘÍP</span>
+                            <span class="r-label">Kolo 3: Radotínský trail</span>
+                        </a>
+                    </nav>
 
-                <div class="sidebar-notice-pill">
-                    ⚡ <strong>STATUS:</strong> Kolo 2 právě probíhá. Zapište svůj čas!
+                    <!-- PŘEHLED SERIÁLU -->
+                    <div class="sidebar-summary-card">
+                        <div class="summary-header">PRAVIDLA ZÁVODU:</div>
+                        <div class="meta-row"><strong>TRAŤ:</strong> NOVÁ KAŽDÝ TÝDEN</div>
+                        <div class="meta-row"><strong>START:</strong> VÍKEND ČAS / SÓLO</div>
+                        <div class="meta-row"><strong>ZÁPIS:</strong> FORMULÁŘ V DETAILU TRATI</div>
+                        <div class="meta-row"><strong>VÝSLEDKY:</strong> V NEDĚLI VEČER</div>
+                    </div>
+
+                    <div class="sidebar-notice-pill">
+                        ⚡ <strong>STATUS:</strong> Kolo 2 právě probíhá. Zapište svůj čas!
+                    </div>
                 </div>
             </aside>
 
@@ -101,14 +109,17 @@
                         </div>
                     </div>
 
-                    <!-- 1. Východiska a historie -->
-                    <section id="vychodiska" class="neo-card">
-                        <div class="card-header">
-                            <span class="section-tag">ODDÍL 1.0</span>
-                            <h2>Z ČEHO SERIÁL VYCHÁZÍ</h2>
+                    <!-- 1. Východiska a historie (Rozbalovací karta) -->
+                    <section id="vychodiska" class="neo-card neo-collapsible">
+                        <div class="card-header collapsible-toggle" role="button" tabindex="0">
+                            <div class="card-header-left">
+                                <span class="section-tag">ODDÍL 1.0</span>
+                                <h2>Z ČEHO SERIÁL VYCHÁZÍ</h2>
+                            </div>
+                            <span class="accordion-badge">[ − ]</span>
                         </div>
                         
-                        <div class="card-body">
+                        <div class="card-body collapsible-content">
                             <div class="quote-stripe">
                                 <p>
                                     Pandemická situace na podzim 2020 ochromila život v této zemi, a to včetně organizovaného společenského 
@@ -124,14 +135,17 @@
                         </div>
                     </section>
 
-                    <!-- 2. Pravidla seriálu -->
-                    <section id="pravidla" class="neo-card">
-                        <div class="card-header">
-                            <span class="section-tag">ODDÍL 2.0</span>
-                            <h2>PRAVIDLA SERIÁLU</h2>
+                    <!-- 2. Pravidla seriálu (Rozbalovací karta) -->
+                    <section id="pravidla" class="neo-card neo-collapsible">
+                        <div class="card-header collapsible-toggle" role="button" tabindex="0">
+                            <div class="card-header-left">
+                                <span class="section-tag">ODDÍL 2.0</span>
+                                <h2>PRAVIDLA SERIÁLU</h2>
+                            </div>
+                            <span class="accordion-badge">[ − ]</span>
                         </div>
 
-                        <div class="card-body">
+                        <div class="card-body collapsible-content">
                             <div class="rules-neo-grid">
                                 <div class="rule-box">
                                     <span class="rule-index">01</span>
@@ -168,14 +182,17 @@
                         </div>
                     </section>
 
-                    <!-- 3. Systém bodování -->
-                    <section id="bodovani" class="neo-card">
-                        <div class="card-header">
-                            <span class="section-tag">ODDÍL 3.0</span>
-                            <h2>SYSTÉM HODNOCENÍ A BODOVÁNÍ</h2>
+                    <!-- 3. Systém bodování (Rozbalovací karta) -->
+                    <section id="bodovani" class="neo-card neo-collapsible">
+                        <div class="card-header collapsible-toggle" role="button" tabindex="0">
+                            <div class="card-header-left">
+                                <span class="section-tag">ODDÍL 3.0</span>
+                                <h2>SYSTÉM HODNOCENÍ A BODOVÁNÍ</h2>
+                            </div>
+                            <span class="accordion-badge">[ − ]</span>
                         </div>
 
-                        <div class="card-body">
+                        <div class="card-body collapsible-content">
                             <p class="body-lead">Systém oceňuje účast, ale zároveň motivuje k souboji o každou vteřinu na trati:</p>
 
                             <div class="formula-neo-box">
@@ -188,14 +205,17 @@
                         </div>
                     </section>
 
-                    <!-- 4. Kalkulačka bodů -->
-                    <section id="kalkulacka" class="neo-card">
-                        <div class="card-header">
-                            <span class="section-tag">ODDÍL 4.0</span>
-                            <h2>RYCHLÝ VÝPOČET BODŮ</h2>
+                    <!-- 4. Kalkulačka bodů (Rozbalovací karta) -->
+                    <section id="kalkulacka" class="neo-card neo-collapsible">
+                        <div class="card-header collapsible-toggle" role="button" tabindex="0">
+                            <div class="card-header-left">
+                                <span class="section-tag">ODDÍL 4.0</span>
+                                <h2>RYCHLÝ VÝPOČET BODŮ</h2>
+                            </div>
+                            <span class="accordion-badge">[ − ]</span>
                         </div>
 
-                        <div class="card-body">
+                        <div class="card-body collapsible-content">
                             <div class="calc-neo-container">
                                 <div class="calc-inputs-col">
                                     <div class="neo-input-group">
@@ -231,13 +251,16 @@
                      POHLED 3: CELKOVÉ VÝSLEDKY SERIÁLU (STANDINGS)
                      ========================================== -->
                 <div id="view-standings" class="view-panel">
-                    <section class="neo-card">
-                        <div class="card-header">
-                            <span class="section-tag">PRŮBĚŽNÉ POŘADÍ</span>
-                            <h2>CELKOVÉ VÝSLEDKY ROČNÍKU 2026</h2>
+                    <section class="neo-card neo-collapsible">
+                        <div class="card-header collapsible-toggle" role="button" tabindex="0">
+                            <div class="card-header-left">
+                                <span class="section-tag">PRŮBĚŽNÉ POŘADÍ</span>
+                                <h2>CELKOVÉ VÝSLEDKY ROČNÍKU 2026</h2>
+                            </div>
+                            <span class="accordion-badge">[ − ]</span>
                         </div>
 
-                        <div class="card-body">
+                        <div class="card-body collapsible-content">
                             <div class="standings-intro">
                                 <p>Sčítání bodů z jednotlivých kol podle pravidla <strong>1 bod za účast + bod za každého poraženého soupeře</strong> v daném kole.</p>
                             </div>

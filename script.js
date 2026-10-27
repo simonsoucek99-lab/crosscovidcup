@@ -1,5 +1,5 @@
 // ============================================================
-// CROSS COVID CUP — DATA, VÝSLEDKY A NAVIGACE
+// CROSS COVID CUP — DATA, VÝSLEDKY, ACCORDION & NAVIGACE
 // ============================================================
 
 // Mockovaná data kol
@@ -18,7 +18,6 @@ const roundsData = {
         description: "Klasický okruh členitým terénem Prokopského údolí se stoupáním na Dívčí hrady s panoramatickým výhledem na celou Prahu. Prudké skalnaté seběhy a technické pasáže na vápenci prověřily sílu v kotnících i tempo na hranici ANP.",
         mapyUrl: "https://mapy.com/s/prokopske-udoli",
         mapName: "Prokopské údolí (8.4 km okruh)",
-        // Neděle 23:59 už proběhla
         revealDeadline: "2026-10-19T23:59:59",
         defaultResults: [
             { name: "Martin Černý", time: "36:42" },
@@ -45,7 +44,6 @@ const roundsData = {
         description: "Rychlejší, ale zrádný okruh kolem stolové hory Vidoule. Kombinace táhlých výběhů a technických kliček mezi stromy v přírodním parku Košíře-Motol a lesoparku Cibulka. Ideální pro tempový běh.",
         mapyUrl: "https://mapy.com/s/vidoule-cibulka",
         mapName: "Vidoule & Cibulka okruh (7.2 km)",
-        // Termín odhalení výsledků: neděle v noci
         revealDeadline: "2026-10-26T23:59:59",
         defaultResults: [
             { name: "Petr Svoboda", time: "32:10" },
@@ -78,7 +76,7 @@ const roundsData = {
 // Simulace stavu času pro účely testování UI (null = reálný čas, 'hidden' = skryto, 'revealed' = odhaleno)
 let simulationOverride = null;
 
-// Načtení výsledků kola (z localStorage nebo výchozích dat)
+// Načtení výsledků kola z localStorage
 function getRoundResults(roundId) {
     const storageKey = `ccc_results_round_${roundId}`;
     const saved = localStorage.getItem(storageKey);
@@ -116,7 +114,6 @@ function isRoundRevealed(round) {
     if (round.status === 'closed') return true;
     if (round.status === 'upcoming') return false;
 
-    // Kontrola vůči aktuálnímu času a nedělnímu termínu
     const now = new Date();
     const deadline = new Date(round.revealDeadline);
     return now >= deadline;
@@ -128,6 +125,9 @@ function isRoundRevealed(round) {
 let currentRoundId = 2;
 
 function navigateTo(target, roundId) {
+    // Zavření mobilního sidebaru, pokud je otevřen
+    closeMobileSidebar();
+
     // Skrytí všech panelů
     document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
@@ -138,7 +138,6 @@ function navigateTo(target, roundId) {
         renderRoundDetail(rId);
         document.getElementById('view-round').classList.add('active');
 
-        // Označení aktivního kola v sidebaru
         const roundNav = document.querySelector(`.nav-round[data-round="${rId}"]`);
         if (roundNav) roundNav.classList.add('active');
         window.location.hash = `kolo-${rId}`;
@@ -159,8 +158,20 @@ function navigateTo(target, roundId) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Zavření rozbaleného sidebaru na mobilu
+function closeMobileSidebar() {
+    const sidebarBody = document.getElementById('sidebarCollapsibleBody');
+    const toggleArrow = document.getElementById('sidebarToggleArrow');
+    const sidebarToggle = document.getElementById('sidebarMobileToggle');
+    if (sidebarBody && sidebarBody.classList.contains('is-open')) {
+        sidebarBody.classList.remove('is-open');
+        if (toggleArrow) toggleArrow.textContent = '[ ROZBALIT ▼ ]';
+        if (sidebarToggle) sidebarToggle.setAttribute('aria-expanded', 'false');
+    }
+}
+
 // ============================================================
-// VYKRESLENÍ DETAILU KOLA
+// VYKRESLENÍ DETAILU KOLA (SEPARÁTNÍ ROZBALOVACÍ KARTY)
 // ============================================================
 function renderRoundDetail(roundId) {
     const round = roundsData[roundId];
@@ -196,7 +207,6 @@ function renderRoundDetail(roundId) {
         const total = sortedResults.length;
         const rowsHtml = sortedResults.map((r, idx) => {
             const rank = idx + 1;
-            // Vzorec Cross Covid Cupu: 1 bod za účast + počet předběhnutých
             const beaten = total - rank;
             const points = 1 + beaten;
             let badgeClass = "rank-other";
@@ -234,10 +244,10 @@ function renderRoundDetail(roundId) {
     }
 
     container.innerHTML = `
-        <article class="neo-card">
-            <!-- Záhlaví detailu kola -->
-            <div class="card-header">
-                <div class="card-header-left">
+        <div class="round-main-wrapper">
+            <!-- Horní štítek kola -->
+            <div class="round-top-card">
+                <div class="round-top-title-group">
                     <span class="section-tag">KOLO ${round.id}</span>
                     <h2>${escapeHtml(round.title)}</h2>
                 </div>
@@ -247,40 +257,50 @@ function renderRoundDetail(roundId) {
                 </div>
             </div>
 
-            <div class="card-body">
-                <!-- Parametry kola -->
-                <div class="round-params-grid">
-                    <div class="param-box">
-                        <span class="param-label">VZDÁLENOST</span>
-                        <div class="param-value">${round.distance}</div>
+            <!-- Karta 1: Propozice a parametry trati (Rozbalovací) -->
+            <section class="neo-card neo-collapsible">
+                <div class="card-header collapsible-toggle" role="button" tabindex="0">
+                    <div class="card-header-left">
+                        <span class="section-tag">PARAMETRY</span>
+                        <h2>PROPOZICE A POPIS TRATI</h2>
                     </div>
-                    <div class="param-box">
-                        <span class="param-label">PŘEVÝŠENÍ</span>
-                        <div class="param-value">${round.elevation}</div>
-                    </div>
-                    <div class="param-box">
-                        <span class="param-label">TERÉN</span>
-                        <div class="param-value" style="font-size:1.15rem;">${round.terrain}</div>
-                    </div>
-                    <div class="param-box">
-                        <span class="param-label">START</span>
-                        <div class="param-value" style="font-size:1rem;">NEDĚLE 10:00</div>
-                    </div>
+                    <span class="accordion-badge">[ − ]</span>
                 </div>
-
-                <!-- Propozice a popis -->
-                <div class="round-desc-card">
-                    <h3>PROPOZICE & CHARAKTER TRATI</h3>
-                    <p>${escapeHtml(round.description)}</p>
-                    <p style="margin-top:8px; font-weight:700; color:var(--accent-red);">
-                        📍 Místo startu: ${escapeHtml(round.startInfo)}
-                    </p>
+                <div class="card-body collapsible-content">
+                    <div class="round-params-grid">
+                        <div class="param-box">
+                            <span class="param-label">VZDÁLENOST</span>
+                            <div class="param-value">${round.distance}</div>
+                        </div>
+                        <div class="param-box">
+                            <span class="param-label">PŘEVÝŠENÍ</span>
+                            <div class="param-value">${round.elevation}</div>
+                        </div>
+                        <div class="param-box">
+                            <span class="param-label">TERÉN</span>
+                            <div class="param-value" style="font-size:1.1rem;">${round.terrain}</div>
+                        </div>
+                        <div class="param-box">
+                            <span class="param-label">START</span>
+                            <div class="param-value" style="font-size:1rem;">NEDĚLE 10:00</div>
+                        </div>
+                    </div>
+                    <p class="round-desc-text">${escapeHtml(round.description)}</p>
+                    <p class="round-start-notice">📍 Místo startu: ${escapeHtml(round.startInfo)}</p>
                 </div>
+            </section>
 
-                <!-- Mapa trati (Iframe placeholder Mapy.cz) & GPX soubor -->
-                <div class="map-section">
+            <!-- Karta 2: Mapa trati & GPX (Rozbalovací) -->
+            <section class="neo-card neo-collapsible">
+                <div class="card-header collapsible-toggle" role="button" tabindex="0">
+                    <div class="card-header-left">
+                        <span class="section-tag">NAVIGACE</span>
+                        <h2>MAPA TRATI & GPX SOUBOR</h2>
+                    </div>
+                    <span class="accordion-badge">[ − ]</span>
+                </div>
+                <div class="card-body collapsible-content">
                     <div class="map-header-row">
-                        <h3>MAPA TRATI & NAVIGACE</h3>
                         <button class="btn-gpx" onclick="downloadGpx(${round.id})">
                             💾 STÁHNOUT GPX SOUBOR TRATI
                         </button>
@@ -298,14 +318,21 @@ function renderRoundDetail(roundId) {
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Formulář pro zápis času -->
-                <div class="entry-form-card">
-                    <div class="entry-form-header">
-                        <h3>⏱️ ZÁPIS ČASU DO KOLA ${round.id}</h3>
-                        <span class="form-info-tag">FORMULÁŘ V DETAILU TRATI</span>
+            <!-- Karta 3: Zápis času (Rozbalovací) -->
+            <section class="neo-card neo-collapsible">
+                <div class="card-header collapsible-toggle" role="button" tabindex="0">
+                    <div class="card-header-left">
+                        <span class="section-tag">ZÁPIS</span>
+                        <h2>⏱️ ZÁPIS ČASU DO KOLA ${round.id}</h2>
                     </div>
-
+                    <span class="accordion-badge">[ − ]</span>
+                </div>
+                <div class="card-body collapsible-content">
+                    <p style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700; margin-bottom:14px; color:var(--text-main);">
+                        FORMULÁŘ V DETAILU TRATI: Zadejte své jméno a dosažený čas z hodinek nebo mobilu.
+                    </p>
                     <form id="timeEntryForm" onsubmit="handleTimeSubmit(event, ${round.id})">
                         <div class="neo-form-row">
                             <div class="form-field">
@@ -323,11 +350,19 @@ function renderRoundDetail(roundId) {
                     </form>
                     <div id="formFeedback" class="form-feedback"></div>
                 </div>
+            </section>
 
-                <!-- Výsledky kola -->
-                <div class="results-card">
-                    <div class="results-header-bar">
-                        <h3>🏆 VÝSLEDKY KOLA ${round.id}</h3>
+            <!-- Karta 4: Výsledky kola (Rozbalovací) -->
+            <section class="neo-card neo-collapsible">
+                <div class="card-header collapsible-toggle" role="button" tabindex="0">
+                    <div class="card-header-left">
+                        <span class="section-tag">VÝSLEDKY</span>
+                        <h2>🏆 VÝSLEDKY KOLA ${round.id}</h2>
+                    </div>
+                    <span class="accordion-badge">[ − ]</span>
+                </div>
+                <div class="card-body collapsible-content">
+                    <div class="results-header-actions">
                         <button class="btn-simulate" onclick="toggleTimeSimulation(${round.id})">
                             ⏱️ TEST: ${simulationOverride === 'revealed' ? 'Přepnout na SKRYTO (Před půlnocí)' : 'Přepnout na ODHALENO (Po půlnoci)'}
                         </button>
@@ -335,9 +370,8 @@ function renderRoundDetail(roundId) {
 
                     ${resultsContentHtml}
                 </div>
-
-            </div>
-        </article>
+            </section>
+        </div>
     `;
 }
 
@@ -363,7 +397,6 @@ function handleTimeSubmit(event, roundId) {
 
     if (!name || !time) return;
 
-    // Přidání do výsledků kola
     const currentResults = getRoundResults(roundId);
     currentResults.push({ name, time });
     saveRoundResults(roundId, currentResults);
@@ -374,7 +407,6 @@ function handleTimeSubmit(event, roundId) {
     nameInput.value = "";
     timeInput.value = "";
 
-    // Přenastavení detailu kola za 1 sekundu
     setTimeout(() => {
         renderRoundDetail(roundId);
     }, 1200);
@@ -418,7 +450,7 @@ function renderOverallStandings() {
     const tbody = document.getElementById('overallStandingsBody');
     if (!tbody) return;
 
-    // Získání bodů z Kola 1
+    // Kolo 1
     const r1 = getRoundResults(1).sort((a, b) => timeToSeconds(a.time) - timeToSeconds(b.time));
     const r1Total = r1.length;
     const r1Scores = {};
@@ -426,7 +458,7 @@ function renderOverallStandings() {
         r1Scores[r.name] = 1 + (r1Total - (idx + 1));
     });
 
-    // Získání bodů z Kola 2
+    // Kolo 2
     const r2 = getRoundResults(2).sort((a, b) => timeToSeconds(a.time) - timeToSeconds(b.time));
     const r2Total = r2.length;
     const r2Scores = {};
@@ -434,7 +466,7 @@ function renderOverallStandings() {
         r2Scores[r.name] = 1 + (r2Total - (idx + 1));
     });
 
-    // Agregace všech unikátních běžců
+    // Agregace
     const runnersMap = {};
     const allNames = new Set([...Object.keys(r1Scores), ...Object.keys(r2Scores)]);
 
@@ -482,7 +514,7 @@ function escapeHtml(str) {
 }
 
 // ============================================================
-// KALKULAČKA BODŮ (ZACHOVÁNA Z ÚVODU)
+// KALKULAČKA BODŮ
 // ============================================================
 const calcRunners = document.getElementById('calcRunners');
 const calcPos = document.getElementById('calcPos');
@@ -526,6 +558,61 @@ if (calcRunners && calcPos) {
 }
 
 // ============================================================
+// LOGIKA ROZBALOVÁNÍ KARET (ACCORDION)
+// ============================================================
+document.addEventListener('click', (e) => {
+    // 1. Obsluha kliknutí na hlavičku rozbalovací karty
+    const toggle = e.target.closest('.collapsible-toggle');
+    if (toggle) {
+        // Ignorovat, pokud se kliklo na interaktivní prvek (tlačítko, odkaz)
+        if (e.target.closest('button, a, input')) return;
+
+        const card = toggle.closest('.neo-collapsible');
+        if (card) {
+            const isCollapsed = card.classList.toggle('is-collapsed');
+            const badge = toggle.querySelector('.accordion-badge');
+            if (badge) {
+                badge.textContent = isCollapsed ? '[ + ]' : '[ − ]';
+            }
+        }
+        return;
+    }
+
+    // 2. Obsluha přepínače mobilního sidebaru
+    const mobileSidebarBtn = e.target.closest('#sidebarMobileToggle');
+    if (mobileSidebarBtn) {
+        const sidebarBody = document.getElementById('sidebarCollapsibleBody');
+        const toggleArrow = document.getElementById('sidebarToggleArrow');
+        if (sidebarBody) {
+            const isOpen = sidebarBody.classList.toggle('is-open');
+            mobileSidebarBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            if (toggleArrow) {
+                toggleArrow.textContent = isOpen ? '[ SBALIT ▲ ]' : '[ ROZBALIT ▼ ]';
+            }
+        }
+        return;
+    }
+});
+
+// Podpora pro klávesnici (Enter / Space na rozbalovacích hlavičkách)
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+        const toggle = document.activeElement ? document.activeElement.closest('.collapsible-toggle') : null;
+        if (toggle && !e.target.closest('button, a, input')) {
+            e.preventDefault();
+            const card = toggle.closest('.neo-collapsible');
+            if (card) {
+                const isCollapsed = card.classList.toggle('is-collapsed');
+                const badge = toggle.querySelector('.accordion-badge');
+                if (badge) {
+                    badge.textContent = isCollapsed ? '[ + ]' : '[ − ]';
+                }
+            }
+        }
+    }
+});
+
+// ============================================================
 // INICIALIZACE A OBSLUHA HASH HISTORIE
 // ============================================================
 function handleHashChange() {
@@ -543,7 +630,6 @@ function handleHashChange() {
     navigateTo('home');
 }
 
-// Klikací obsluha pro všechny položky s data-view
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-view]').forEach(item => {
         item.addEventListener('click', (e) => {
